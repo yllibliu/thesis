@@ -1,0 +1,14 @@
+# Fdb version 3
+["xdvipdfmx"] 1525130537 "cover.xdv" "cover.pdf" "cover" 1525130538
+  "cover.xdv" 1525130537 2888 125f34a3b88e336c6bafa5581d1a7b0b "xelatex"
+  (generated)
+  "cover.pdf"
+["xelatex"] 1525130537 "cover.tex" "cover.xdv" "cover" 1525130538
+  "/usr/local/texlive/2017/texmf-dist/web2c/texmf.cnf" 1494087824 32646 eadc4ca26cdbe7105ac7c593aa8c4f72 ""
+  "/usr/local/texlive/2017/texmf-var/web2c/xetex/xelatex.fmt" 1524524172 3678527 f57c86f908f011076a0511254ee460eb ""
+  "/usr/local/texlive/2017/texmf.cnf" 1495593465 577 2b71d4d888f9e5560b2e99985915a9fa ""
+  "cover.aux" 1525130537 8 a94a2480d3289e625eea47cd1b285758 ""
+  "cover.tex" 1525130536 842 2712a1af127a396cca4e4e2402f90b8f ""
+  (generated)
+  "cover.xdv"
+  "cover.log"

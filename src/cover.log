@@ -1,0 +1,441 @@
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.24)  1 MAY 2018 07:22
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**cover.tex
+(./cover.tex
+LaTeX2e <2017-04-15>
+Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
+
+! LaTeX Error: Environment titlepage undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \begin{titlepage}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2   \begin{center}
+                    
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 2--2
+[] 
+ []
+
+Missing character: There is no 國 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 立 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 臺 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 灣 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 大 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 學 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 電 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 子 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 工 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 程 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 學 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 研 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 究 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 所 in font [lmroman17-regular]:mapping=tex-text;!
+
+Overfull \hbox (70.56pt too wide) in paragraph at lines 5--5
+ \TU/lmr/m/n/18 國立臺灣大學電子工程學研究所 
+ []
+
+Missing character: There is no 碩 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 士 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 論 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 文 in font [lmroman17-regular]:mapping=tex-text;!
+
+Overfull \hbox (20.16pt too wide) in paragraph at lines 6--6
+ []\TU/lmr/m/n/18 碩士論文 
+ []
+
+! Undefined control sequence.
+l.10     \small
+               {~}\\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (71.792pt too wide) in paragraph at lines 13--13
+ []\TU/lmr/m/n/14 Department 
+ []
+
+
+Overfull \hbox (11.046pt too wide) in paragraph at lines 13--13
+ \TU/lmr/m/n/14 of 
+ []
+
+
+Overfull \hbox (29.876pt too wide) in paragraph at lines 13--13
+ \TU/lmr/m/n/14 Elec- 
+ []
+
+
+Overfull \hbox (19.04001pt too wide) in paragraph at lines 13--13
+ \TU/lmr/m/n/14 tri- 
+ []
+
+
+Overfull \hbox (16.758pt too wide) in paragraph at lines 13--13
+ \TU/lmr/m/n/14 cal 
+ []
+
+
+Overfull \hbox (21.504pt too wide) in paragraph at lines 13--13
+ \TU/lmr/m/n/14 En- 
+ []
+
+
+Overfull \hbox (15.232pt too wide) in paragraph at lines 13--13
+ \TU/lmr/m/n/14 gi- 
+ []
+
+
+Overfull \hbox (29.694pt too wide) in paragraph at lines 13--13
+ \TU/lmr/m/n/14 neer- 
+ []
+
+
+Overfull \hbox (18.284pt too wide) in paragraph at lines 13--13
+ \TU/lmr/m/n/14 ing 
+ []
+
+
+Overfull \hbox (43.414pt too wide) in paragraph at lines 14--14
+ []\TU/lmr/m/n/14 College 
+ []
+
+
+Overfull \hbox (11.046pt too wide) in paragraph at lines 14--14
+ \TU/lmr/m/n/14 of 
+ []
+
+
+Overfull \hbox (29.876pt too wide) in paragraph at lines 14--14
+ \TU/lmr/m/n/14 Elec- 
+ []
+
+
+Overfull \hbox (19.04001pt too wide) in paragraph at lines 14--14
+ \TU/lmr/m/n/14 tri- 
+ []
+
+
+Overfull \hbox (16.758pt too wide) in paragraph at lines 14--14
+ \TU/lmr/m/n/14 cal 
+ []
+
+
+Overfull \hbox (21.504pt too wide) in paragraph at lines 14--14
+ \TU/lmr/m/n/14 En- 
+ []
+
+
+Overfull \hbox (15.232pt too wide) in paragraph at lines 14--14
+ \TU/lmr/m/n/14 gi- 
+ []
+
+
+Overfull \hbox (29.694pt too wide) in paragraph at lines 14--14
+ \TU/lmr/m/n/14 neer- 
+ []
+
+
+Overfull \hbox (18.284pt too wide) in paragraph at lines 14--14
+ \TU/lmr/m/n/14 ing 
+ []
+
+
+Overfull \hbox (22.092pt too wide) in paragraph at lines 14--14
+ \TU/lmr/m/n/14 and 
+ []
+
+
+Overfull \hbox (32.746pt too wide) in paragraph at lines 14--14
+ \TU/lmr/m/n/14 Com- 
+ []
+
+
+Overfull \hbox (31.99pt too wide) in paragraph at lines 14--14
+ \TU/lmr/m/n/14 puter 
+ []
+
+
+Overfull \hbox (22.078pt too wide) in paragraph at lines 14--14
+ \TU/lmr/m/n/14 Sci- 
+ []
+
+
+Overfull \hbox (25.886pt too wide) in paragraph at lines 14--14
+ \TU/lmr/m/n/14 ence 
+ []
+
+
+Overfull \hbox (54.96pt too wide) in paragraph at lines 18--18
+ []\TU/lmr/m/n/16 National 
+ []
+
+
+Overfull \hbox (25.616pt too wide) in paragraph at lines 18--18
+ \TU/lmr/m/n/16 Tai- 
+ []
+
+
+Overfull \hbox (25.792pt too wide) in paragraph at lines 18--18
+ \TU/lmr/m/n/16 wan 
+ []
+
+
+Overfull \hbox (28.09601pt too wide) in paragraph at lines 18--18
+ \TU/lmr/m/n/16 Uni- 
+ []
+
+
+Overfull \hbox (24.336pt too wide) in paragraph at lines 18--18
+ \TU/lmr/m/n/16 ver- 
+ []
+
+
+Overfull \hbox (22.752pt too wide) in paragraph at lines 18--18
+ \TU/lmr/m/n/16 sity 
+ []
+
+
+Overfull \hbox (44.51201pt too wide) in paragraph at lines 19--19
+ []\TU/lmr/m/n/16 Master 
+ []
+
+
+Overfull \hbox (30.192pt too wide) in paragraph at lines 19--19
+ \TU/lmr/m/n/16 The- 
+ []
+
+
+Overfull \hbox (15.488pt too wide) in paragraph at lines 19--19
+ \TU/lmr/m/n/16 sis 
+ []
+
+
+Overfull \hbox (41.526pt too wide) in paragraph at lines 27--27
+ []\TU/lmr/m/n/18 Linux 
+ []
+
+
+Overfull \hbox (31.338pt too wide) in paragraph at lines 27--27
+ \TU/lmr/m/n/18 UIO 
+ []
+
+
+Overfull \hbox (42.01201pt too wide) in paragraph at lines 27--27
+ \TU/lmr/m/n/18 driver 
+ []
+
+
+Overfull \hbox (19.602pt too wide) in paragraph at lines 27--27
+ \TU/lmr/m/n/18 for 
+ []
+
+
+Overfull \hbox (26.91pt too wide) in paragraph at lines 27--27
+ \TU/lmr/m/n/18 Xil- 
+ []
+
+
+Overfull \hbox (22.428pt too wide) in paragraph at lines 27--27
+ \TU/lmr/m/n/18 inx 
+ []
+
+
+Overfull \hbox (30.852pt too wide) in paragraph at lines 27--27
+ \TU/lmr/m/n/18 AXI 
+ []
+
+
+Overfull \hbox (40.5pt too wide) in paragraph at lines 27--27
+ \TU/lmr/m/n/18 DMA 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.27     Linux UIO driver for Xilinx AXI DMA\\
+                                              
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[1]
+Overfull \hbox (45.954pt too wide) in paragraph at lines 28--28
+ []\TU/lmr/m/n/18 Thesis 
+ []
+
+
+Overfull \hbox (21.96pt too wide) in paragraph at lines 28--28
+ \TU/lmr/m/n/18 Ti- 
+ []
+
+
+Overfull \hbox (18.18001pt too wide) in paragraph at lines 28--28
+ \TU/lmr/m/n/18 tle 
+ []
+
+Missing character: There is no 劉 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 宇 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 唐 in font [lmroman17-regular]:mapping=tex-text;!
+
+Overfull \hbox (15.12pt too wide) in paragraph at lines 34--34
+ []\TU/lmr/m/n/18 劉宇唐 
+ []
+
+
+Overfull \hbox (25.704pt too wide) in paragraph at lines 35--35
+ []\TU/lmr/m/n/18 Yu- 
+ []
+
+
+Overfull \hbox (36.342pt too wide) in paragraph at lines 35--35
+ \TU/lmr/m/n/18 Tang 
+ []
+
+
+Overfull \hbox (24.066pt too wide) in paragraph at lines 35--35
+ \TU/lmr/m/n/18 Liu 
+ []
+
+Missing character: There is no 指 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 導 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 教 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 授 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no ： in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 鄭 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 振 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 牟 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 博 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 士 in font [lmroman17-regular]:mapping=tex-text;!
+
+Overfull \hbox (54.02402pt too wide) in paragraph at lines 40--40
+ []\TU/lmr/m/n/18 指導教授：鄭振牟 博士 
+ []
+
+
+Overfull \hbox (60.03pt too wide) in paragraph at lines 41--41
+ []\TU/lmr/m/n/18 Advisor: 
+ []
+
+
+Overfull \hbox (43.164pt too wide) in paragraph at lines 41--41
+ \TU/lmr/m/n/18 Chen- 
+ []
+
+
+Overfull \hbox (32.76pt too wide) in paragraph at lines 41--41
+ \TU/lmr/m/n/18 Mou 
+ []
+
+
+Overfull \hbox (50.49pt too wide) in paragraph at lines 41--41
+ \TU/lmr/m/n/18 Cheng, 
+ []
+
+
+Overfull \hbox (42.228pt too wide) in paragraph at lines 41--41
+ \TU/lmr/m/n/18 Ph.D. 
+ []
+
+Missing character: There is no 中 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 華 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 民 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 國 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 年 in font [lmroman17-regular]:mapping=tex-text;!
+Missing character: There is no 月 in font [lmroman17-regular]:mapping=tex-text;!
+
+Overfull \hbox (20.16pt too wide) in paragraph at lines 46--46
+ []\TU/lmr/m/n/18 中華民國 
+ []
+
+
+Overfull \hbox (24.786pt too wide) in paragraph at lines 46--46
+ \TU/lmr/m/n/18 107 
+ []
+
+
+Overfull \hbox (5.04pt too wide) in paragraph at lines 46--46
+ \TU/lmr/m/n/18 年 
+ []
+
+
+Overfull \hbox (8.262pt too wide) in paragraph at lines 46--46
+ \TU/lmr/m/n/18 7 
+ []
+
+
+Overfull \hbox (5.04pt too wide) in paragraph at lines 46--46
+ \TU/lmr/m/n/18 月 
+ []
+
+
+Overfull \hbox (30.906pt too wide) in paragraph at lines 47--47
+ []\TU/lmr/m/n/18 July 
+ []
+
+
+Overfull \hbox (33.048pt too wide) in paragraph at lines 47--47
+ \TU/lmr/m/n/18 2018 
+ []
+
+
+! LaTeX Error: \begin{document} ended by \end{titlepage}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.51 \end{titlepage}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+)
+! Emergency stop.
+<*> cover.tex
+             
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 16 strings out of 493005
+ 292 string characters out of 6134596
+ 63634 words of memory out of 5000000
+ 4083 multiletter control sequences out of 15000+600000
+ 3664 words of font info for 17 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 12i,4n,7p,72b,186s stack positions out of 5000i,500n,10000p,200000b,80000s
+Output written on cover.xdv (1 page, 2888 bytes).
