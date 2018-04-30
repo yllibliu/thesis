@@ -1,0 +1,70 @@
+\documentclass[12pt,a4paper]{report}
+
+%-------------------------------------------------------------------------
+%
+% Packages
+%
+%-------------------------------------------------------------------------
+
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{anyfontsize}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{pgfplots}
+\usepackage{xeCJK}
+\setmainfont[Ligatures={Common,TeX}, Numbers={OldStyle}]{Times New Roman}
+\setCJKmainfont{DFKai-SB}
+
+% 個人設定和數據
+\input{src/def}
+
+%-------------------------------------------------------------------------
+%
+% Documents
+%
+%-------------------------------------------------------------------------
+
+\begin{document}
+
+% 封面格式
+\newgeometry{left=0cm,top=4cm,right=0cm,bottom=3cm}
+\onehalfspacing
+
+% 封面
+\input{src/cover}
+
+% 內文格式
+\newgeometry{left=3cm,top=3cm,right=3cm,bottom=2cm}
+\doublespacing
+
+% 中英文摘要
+\input{src/abstract_zh}
+\input{src/abstract_en}
+
+% 羅馬數字編號
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+% 目錄、圖目錄、表目錄
+\tableofcontents
+\listoffigures
+\listoftables
+\clearpage
+
+% 阿拉伯數字編號
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% 論文正文
+\input{src/introduction}
+
+% 參考文獻
+\clearpage
+\addcontentsline{toc}{chapter}{References}
+\renewcommand{\bibname}{References}
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,reference}
+
+\end{document}
