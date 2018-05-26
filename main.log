@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.24)  1 MAY 2018 07:31
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.24)  26 MAY 2018 12:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1619,7 +1619,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
  (./src/abstract_zh.tex
 
 LaTeX Font Warning: Font shape `TU/BiauKai(0)/m/it' undefined
-(Font)              using `TU/BiauKai(0)/m/n' instead on input line 10.
+(Font)              using `TU/BiauKai(0)/m/n' instead on input line 12.
 
 [1
 
@@ -1650,25 +1650,30 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 ] (./src/introduction.tex
 Chapter 1.
-
-LaTeX Font Warning: Font shape `TU/BiauKai(0)/bx/n' undefined
-(Font)              using `TU/BiauKai(0)/m/n' instead on input line 10.
-
-*************************************************
-* xeCJK warning: "CJKfamily-Unknown"
-* 
-* Unknown CJK family `\CJKttdefault' is being ignored.
-* 
-* Try to use `\setCJKmonofont[...]{...}' to define it.
-*************************************************
 [1
 
 
 ]
-File: images/lena.png Graphic file (type QTm)
- <use  "images/lena.png" >
-PGFPlots: reading {data/result.txt}
-) [2] [3] [4] (./main.bbl) [5
+Chapter 2.
+[2
+
+]
+Chapter 3.
+[3
+
+]
+Chapter 4.
+[4
+
+]
+Chapter 5.
+) [5
+
+] (./main.bbl
+
+LaTeX Warning: Empty `thebibliography' environment on input line 24.
+
+) [6
 
 
 ] (./main.aux)
@@ -1677,12 +1682,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 37609 strings out of 493005
- 911960 string characters out of 6134596
- 1153801 words of memory out of 5000000
- 41112 multiletter control sequences out of 15000+600000
- 6608 words of font info for 52 fonts, out of 8000000 for 9000
+ 37104 strings out of 493005
+ 895063 string characters out of 6134596
+ 1001142 words of memory out of 5000000
+ 40617 multiletter control sequences out of 15000+600000
+ 6592 words of font info for 50 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 62i,17n,96p,10484b,2205s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,5n,96p,10484b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (11 pages).
+Output written on main.pdf (12 pages).
