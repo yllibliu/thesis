@@ -1,5 +1,5 @@
 \documentclass[12pt,a4paper]{report}
-
+%\renewcommand{\baselinestretch}{1.5}
 %-------------------------------------------------------------------------
 %
 % Packages
@@ -50,7 +50,7 @@
 
 % 目錄、圖目錄、表目錄
 \tableofcontents
-\listoffigures
+\listoffigures 
 \listoftables
 \clearpage
 
@@ -60,7 +60,11 @@
 
 % 論文正文
 \input{src/introduction}
-
+\input{src/Preliminaries}
+\input{src/proposed_solution}
+\input{src/Environment_Framework}
+\input{src/analysis}
+\input{src/conclusion}
 % 參考文獻
 \clearpage
 \addcontentsline{toc}{chapter}{References}

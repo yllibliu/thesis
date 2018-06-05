@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.24)  26 MAY 2018 12:32
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.24)  5 JUN 2018 21:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1417,7 +1417,20 @@ LaTeX Info: Redefining \rmfamily on input line 17.
 . - 'normal' (m/n) with NFSS spec.: <->"BiauKai/OT"
 . - 'small caps'  (m/sc) with NFSS spec.: 
 .................................................
-(./src/def.tex) (./main.aux)
+(./src/def.tex) (./main.aux
+
+LaTeX Warning: Label `sec:Motivation' multiply defined.
+
+
+LaTeX Warning: Label `sec:contribution' multiply defined.
+
+
+LaTeX Warning: Label `sec:Motivation' multiply defined.
+
+
+LaTeX Warning: Label `sec:contribution' multiply defined.
+
+)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
@@ -1436,8 +1449,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
 LaTeX Font Info:    ... okay on input line 30.
 LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 30.
 LaTeX Font Info:    Try loading font information for T3+cmr on input line 30.
-
-(/usr/local/texlive/2017/texmf-dist/tex/latex/tipa/t3cmr.fd
+ (/usr/local/texlive/2017/texmf-dist/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
 LaTeX Font Info:    ... okay on input line 30.
@@ -1630,64 +1642,72 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 2.
-)
+ [1
+
+])
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
- [1
-
-] (./main.lof)
+ [2] (./main.lof)
 \tf@lof=\write5
 \openout5 = `main.lof'.
 
- [2
+ [3
 
-] (./main.lot)
+]
+(./main.lot)
 \tf@lot=\write6
 \openout6 = `main.lot'.
 
-[3
+ [4
 
 ] (./src/introduction.tex
 Chapter 1.
-[1
+) (./src/Preliminaries.tex [1
 
 
 ]
 Chapter 2.
-[2
+) (./src/proposed_solution.tex [2
 
 ]
 Chapter 3.
-[3
+) (./src/Environment_Framework.tex [3
 
 ]
 Chapter 4.
-[4
+) (./src/analysis.tex [4
 
 ]
 Chapter 5.
-) [5
+) (./src/conclusion.tex [5
+
+]
+Chapter 6.
+) [6
 
 ] (./main.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 24.
 
-) [6
+) [7
 
 
 ] (./main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 37104 strings out of 493005
- 895063 string characters out of 6134596
+ 37133 strings out of 493005
+ 895652 string characters out of 6134596
  1001142 words of memory out of 5000000
- 40617 multiletter control sequences out of 15000+600000
- 6592 words of font info for 50 fonts, out of 8000000 for 9000
+ 40630 multiletter control sequences out of 15000+600000
+ 6600 words of font info for 51 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  62i,5n,96p,10484b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (12 pages).
+Output written on main.pdf (14 pages).

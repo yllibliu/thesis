@@ -1,8 +1,24 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}
 \contentsline {section}{\numberline {1.1}Motivation}{1}
 \contentsline {section}{\numberline {1.2}Contribution}{1}
-\contentsline {chapter}{\numberline {2}Background technology}{2}
+\contentsline {chapter}{\numberline {2}Preliminaries}{2}
+\contentsline {section}{\numberline {2.1}Embedded Linux}{2}
+\contentsline {subsection}{\numberline {2.1.1}Device Tree}{2}
+\contentsline {subsection}{\numberline {2.1.2}Linux Kernel Driver}{2}
+\contentsline {section}{\numberline {2.2}UIO Driver}{2}
+\contentsline {section}{\numberline {2.3}AXI Bus}{2}
+\contentsline {subsection}{\numberline {2.3.1}AXI Stream }{2}
+\contentsline {section}{\numberline {2.4}DMA}{2}
+\contentsline {subsection}{\numberline {2.4.1}DMA Engine }{2}
 \contentsline {chapter}{\numberline {3}Proposed solution and evaluation}{3}
-\contentsline {chapter}{\numberline {4}Discussion}{4}
-\contentsline {chapter}{\numberline {5}Conclusion}{5}
-\contentsline {chapter}{References}{6}
+\contentsline {section}{\numberline {3.1}Motivation}{3}
+\contentsline {section}{\numberline {3.2}Contribution}{3}
+\contentsline {chapter}{\numberline {4}Environment Framework}{4}
+\contentsline {chapter}{\numberline {5}Analysis}{5}
+\contentsline {section}{\numberline {5.1}FIFO}{5}
+\contentsline {section}{\numberline {5.2}Stream IP}{5}
+\contentsline {section}{\numberline {5.3}Comparison}{5}
+\contentsline {chapter}{\numberline {6}Conclusion}{6}
+\contentsline {section}{\numberline {6.1}Motivation}{6}
+\contentsline {section}{\numberline {6.2}Contribution}{6}
+\contentsline {chapter}{References}{7}
