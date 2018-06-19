@@ -4,21 +4,23 @@
 \contentsline {chapter}{\numberline {2}Preliminaries}{2}
 \contentsline {section}{\numberline {2.1}Embedded Linux}{2}
 \contentsline {subsection}{\numberline {2.1.1}Device Tree}{2}
-\contentsline {subsection}{\numberline {2.1.2}Linux Kernel Driver}{2}
-\contentsline {section}{\numberline {2.2}UIO Driver}{2}
-\contentsline {section}{\numberline {2.3}AXI Bus}{2}
-\contentsline {subsection}{\numberline {2.3.1}AXI Stream }{2}
-\contentsline {section}{\numberline {2.4}DMA}{2}
-\contentsline {subsection}{\numberline {2.4.1}DMA Engine }{2}
-\contentsline {chapter}{\numberline {3}Proposed solution and evaluation}{3}
-\contentsline {section}{\numberline {3.1}Motivation}{3}
-\contentsline {section}{\numberline {3.2}Contribution}{3}
-\contentsline {chapter}{\numberline {4}Environment Framework}{4}
-\contentsline {chapter}{\numberline {5}Analysis}{5}
-\contentsline {section}{\numberline {5.1}FIFO}{5}
-\contentsline {section}{\numberline {5.2}Stream IP}{5}
-\contentsline {section}{\numberline {5.3}Comparison}{5}
-\contentsline {chapter}{\numberline {6}Conclusion}{6}
-\contentsline {section}{\numberline {6.1}Motivation}{6}
-\contentsline {section}{\numberline {6.2}Contribution}{6}
-\contentsline {chapter}{References}{7}
+\contentsline {subsection}{\numberline {2.1.2}Linux Kernel Driver}{3}
+\contentsline {section}{\numberline {2.2}UIO}{3}
+\contentsline {section}{\numberline {2.3}AXI Bus}{4}
+\contentsline {subsection}{\numberline {2.3.1}AXI Stream }{4}
+\contentsline {section}{\numberline {2.4}DMA}{4}
+\contentsline {subsection}{\numberline {2.4.1}DMA Engine }{4}
+\contentsline {chapter}{\numberline {3}Proposed solution }{5}
+\contentsline {section}{\numberline {3.1}Linux UIO driver for AXI DMA}{5}
+\contentsline {subsection}{\numberline {3.1.1}Scatter Gather}{5}
+\contentsline {subsection}{\numberline {3.1.2}Cache Coherency}{5}
+\contentsline {section}{\numberline {3.2}Implementation}{5}
+\contentsline {chapter}{\numberline {4}Environment Framework}{6}
+\contentsline {chapter}{\numberline {5}Analysis}{7}
+\contentsline {section}{\numberline {5.1}AXI FIFO}{7}
+\contentsline {section}{\numberline {5.2}Custom Stream IP}{7}
+\contentsline {subsection}{\numberline {5.2.1}DMA with OpenCores tinyAES}{7}
+\contentsline {subsection}{\numberline {5.2.2}DMA with ECDSA(Curve secp256k1)}{7}
+\contentsline {section}{\numberline {5.3}Comparison}{7}
+\contentsline {chapter}{\numberline {6}Conclusion}{9}
+\contentsline {chapter}{References}{10}

@@ -4,21 +4,27 @@
 %-------------------------------------------------------------------------
 \chapter{Analysis}
 \label{cha:Analysis}
-
+This chapter, we use three different IP in our hardware designs. DMA with AXI Stream FIFO, 
+DMA with OpenCores tinyAES and DMA with ECDSA(Curve secp256k1).
 %-------------------------------------------------------------------------
 % Section: FIFO
 %-------------------------------------------------------------------------
 
-\section{FIFO}
-\label{sec:FIFO}
+\section{AXI FIFO}
+\label{sec:AXI FIFO}
 
 %-------------------------------------------------------------------------
 % Section: Stream IP
 %-------------------------------------------------------------------------
 
-\section{Stream IP}
-\label{sec:Stream IP}
+\section{Custom Stream IP}
+\label{sec:Custom Stream IP}
 
+\subsection{DMA with OpenCores tinyAES}
+\label{sec:DMA with OpenCores tinyAES}
+
+\subsection{DMA with ECDSA(Curve secp256k1)}
+\label{sec:DMA with ECDSA(Curve secp256k1)}
 %-------------------------------------------------------------------------
 % Section: 比較
 %-------------------------------------------------------------------------
@@ -26,7 +32,26 @@
 \label{sec:Comparison}
 
 
-
-
+\begin{table}
+\centering
+\begin{tabular}{clr|clr}
+  \toprule
+    \textbf{Id} & \textbf{Family} & \textbf{\#} & \textbf{Id} & \textbf{Family} & \textbf{\#} \\
+  \midrule
+  A & DroidKungFu   & 473 & K & FakePlayer      &  74 \\
+  B & DorDrae       & 420 & L & Wroba           &  74 \\
+  C & Meds          & 221 & M & Plankton        &  63 \\
+  D & Fakeguard     & 203 & N & DroidDreamLight &  52 \\
+  E & Boxer         & 202 & O & Cawitt          &  51 \\
+  F & Kmin          & 183 & P & Badao           &  46 \\
+  G & Rooter        & 117 & Q & Fake10086       &  46 \\
+  H & Boqx          & 114 & R & Cupi            &  39 \\
+  I & DroidAp       & 106 & S & Coogos          &  39 \\
+  J & DroidKungFu3  &  93 & T & DroidDream      &  39 \\
+  \bottomrule
+\end{tabular}
+\caption{Top 20 malware families in the dataset.}
+\label{tab:sample1}
+\end{table}
 
 
