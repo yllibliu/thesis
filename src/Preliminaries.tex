@@ -22,11 +22,11 @@ on an embedded system(for example:router).
 
 Device Tree is a mechanism to describe all hardware and devices of a system. In early Linux 
 kernel, hardware description is hardcode in kernel file, so porting kernel to different
-ARM-CPU based system is painful. To solve this problem, Devcice Tree is introduced. 
+ARM-CPU based system is painful. To solve this problem, Device Tree is introduced. 
 Like x86 based system, we should consider Linux kernel image is a black box, and give the 
 hardware informations of system to kernel. \\
 %
-In FPGA development flow, the whole system keeps almost the same, the only thing changes 
+In FPGA development flow, the whole system keeps almost the same, the =only thing changes 
 is our design in PL(Programmable Logic) side. To boot Linux with different PL design, only 
 a little modification of devicetree file is needed.     
 
@@ -70,9 +70,32 @@ only care about the value in the hardware register and when we can get the corre
 \section{AXI Bus}
 \label{sec:AXI Bus}
 
+Advanced eXtensible Interface (AXI) protocol is part of ARM AMBA(Advanced Microcontroller Bus Architecture).
+It is a on-chip bus interface that is targeted at high performance, high clock frequency system designs and includes features that make it suitable for high speed sub-micrometer interconnect:
+\begin{itemize}
+\item separate address/control and data phases
+\item support for unaligned data transfers using byte strobes
+\item burst based transactions with only start address issued
+\item issuing of multiple outstanding addresses with out of order responses
+\item easy addition of register stages to provide timing closure.
+\end{itemize}
 
-\subsection{AXI Stream }
-\label{subsec:AXI Stream}
+\subsection{AMBA}
+\label{subsec:AMBA}
+
+
+\subsection{AXI4}
+\label{subsec:AXI4}
+AXI4
+\begin{itemize}
+\item AXI4:
+\item AXI4-Lite:
+\item AXI4-Stream:
+\end{itemize}
+
+
+
+
 
 %-------------------------------------------------------------------------
 % Section: DMA

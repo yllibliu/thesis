@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.24)  19 JUN 2018 21:28
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.24)  20 JUN 2018 20:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1660,44 +1660,45 @@ Chapter 2.
 
 ]
 File: images/uio.jpg Graphic file (type QTm)
- <use  "images/uio.jpg" >) (./src/proposed_solution.tex [3] [4]
+ <use  "images/uio.jpg" > [3]) (./src/proposed_solution.tex [4]
 Chapter 3.
-) (./src/Environment_Framework.tex [5
+File: images/AXI4customIP.jpg Graphic file (type QTm)
+<use  "images/AXI4customIP.jpg" > [5
 
 ]
+File: images/cache_coherency.jpg Graphic file (type QTm)
+ <use  "images/cache_coherency.jpg" >)
+(./src/Environment_Framework.tex [6] [7]
 Chapter 4.
-) (./src/analysis.tex [6
+) (./src/analysis.tex [8
 
 ]
 Chapter 5.
-) (./src/conclusion.tex [7
+) (./src/conclusion.tex [9
 
-] [8]
+] [10]
 Chapter 6.
-) [9
+) [11
 
 ] (./main.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 24.
 
-) [10
+) [12
 
 
 ] (./main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 37146 strings out of 493005
- 895882 string characters out of 6134596
+ 37153 strings out of 493005
+ 896049 string characters out of 6134596
  1001142 words of memory out of 5000000
- 40639 multiletter control sequences out of 15000+600000
+ 40644 multiletter control sequences out of 15000+600000
  6600 words of font info for 51 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  62i,8n,96p,10484b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (17 pages).
+Output written on main.pdf (19 pages).
