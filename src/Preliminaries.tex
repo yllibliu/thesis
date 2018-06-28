@@ -16,6 +16,12 @@ Embedded Linux, UIO Driver, AXI Bus, and DMA.
 
 Embedded Linux is a kernel and set of libraries and utilitied designed to run
 on an embedded system(for example:router). 
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[scale=0.5]{images/embedded_linux.jpg}
+  \caption[Embedded Linux on FPGA]{Embedded Linux on FPGA}
+  \label{fig:Embedded Linux on FPGA}
+\end{figure}
 
 \subsection{Device Tree}
 \label{subsec:Device Tree}
@@ -83,7 +89,7 @@ It is a on-chip bus interface that is targeted at high performance, high clock f
 \subsection{AMBA}
 \label{subsec:AMBA}
 
-
+ 
 \subsection{AXI4}
 \label{subsec:AXI4}
 AXI4
@@ -102,6 +108,9 @@ AXI4
 %-------------------------------------------------------------------------
 \section{DMA}
 \label{sec:DMA}
+
+DMA(Direct Memory Access) is a feature that allows hardware subsystems to access main system memory independent of CPU. For example, when CPU want to submit a DMA transaction, it needs to give DMA controller where the data is (memory address), and size of the data(data length). After submit, CPU can back to work for other task, once the transaction is done, CPU will receive a interrupt from DMA controller.
+ 
 
 \subsection{DMA Engine }
 \label{subsec:DMA Engine}

@@ -1,9 +1,16 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces The UIO way.}}{3}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Embedded Linux on FPGA}}{3}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces The UIO way.}}{4}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Custom IP with AXI4-Lite/Full Register.}}{5}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Cache Coherency Problems.}}{7}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Custom IP with AXI4-Lite/Full Register.}}{7}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Custom IP with DMA and AXI-Stream Register.}}{7}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces UIO write/read functions.}}{8}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Cache Coherency Problems.}}{10}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces UIO write/read functions.}}{10}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Udma Prepare for DMA.}}{11}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces UDMA write/read functions.}}{12}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Embedded Linux on FPGA(UDMA ver.)}}{15}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
