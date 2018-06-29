@@ -15,13 +15,24 @@ Embedded Linux, UIO Driver, AXI Bus, and DMA.
 \label{sec:Embedded Linux}
 
 Embedded Linux is a kernel and set of libraries and utilitied designed to run
-on an embedded system(for example:router). 
+on an embedded system(for example:router). Figure~\ref{fig:Linux Boot Stage on Target Platform} shows the stages of booting Linux on the target platform. For example, when turns on the FPGA, the board will boot ROM and find the boot mode setting, then load FSBL(First Stage Bootloader), which will load bitstream to initialize the PL side on FPGA. Then the FGPA will load the SSBL(Second Stage Bootloader), here we use u-boot for demonstration. The main purpose of u-boot is to load Linux Kernel, it loads kernel image with \textbf{\emph{devicetree file}} of the target platform. With well prepared file system(e.g ramdiskfs), the OS should run up successfully.
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[scale=0.4]{images/linux_boot_stage.jpg}
+  \caption[Linux Boot Stage on Target Platform]{Linux Boot Stage on Target Platform}
+  \label{fig:Linux Boot Stage on Target Platform}
+\end{figure}
+
+
+
 \begin{figure}[!htb]
   \centering
   \includegraphics[scale=0.5]{images/embedded_linux.jpg}
   \caption[Embedded Linux on FPGA]{Embedded Linux on FPGA}
   \label{fig:Embedded Linux on FPGA}
 \end{figure}
+
+
 
 \subsection{Device Tree}
 \label{subsec:Device Tree}
@@ -32,7 +43,7 @@ ARM-CPU based system is painful. To solve this problem, Device Tree is introduce
 Like x86 based system, we should consider Linux kernel image is a black box, and give the 
 hardware informations of system to kernel. \\
 %
-In FPGA development flow, the whole system keeps almost the same, the =only thing changes 
+In FPGA development flow, the whole system almost keeps the same, the only thing that might change 
 is our design in PL(Programmable Logic) side. To boot Linux with different PL design, only 
 a little modification of devicetree file is needed.     
 

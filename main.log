@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.24)  28 JUN 2018 22:44
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.24)  29 JUN 2018 16:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1694,13 +1694,15 @@ Chapter 1.
 
 ]
 Chapter 2.
+File: images/linux_boot_stage.jpg Graphic file (type QTm)
+<use  "images/linux_boot_stage.jpg" >
 File: images/embedded_linux.jpg Graphic file (type QTm)
-<use  "images/embedded_linux.jpg" > [2
+ <use  "images/embedded_linux.jpg" >
+[2
 
 ] [3]
 File: images/uio.jpg Graphic file (type QTm)
- <use  "images/uio.jpg" > [4])
-(./src/proposed_solution.tex [5]
+ <use  "images/uio.jpg" > [4] [5]) (./src/proposed_solution.tex [6]
 Chapter 3.
 File: images/customAXI4IP.jpg Graphic file (type QTm)
 <use  "images/customAXI4IP.jpg" >
@@ -1715,15 +1717,15 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-) [6
+) [7
 
 ]
 
-LaTeX Warning: Text page 7 contains only floats.
+LaTeX Warning: Text page 8 contains only floats.
 
-[7]
+[8]
 File: images/uio_func_write.png Graphic file (type QTm)
- <use  "images/uio_func_write.png" > [8]
+ <use  "images/uio_func_write.png" > [9]
 File: images/cache_coherency.jpg Graphic file (type QTm)
 
 <use  "images/cache_coherency.jpg" >
@@ -1733,13 +1735,13 @@ File: images/udma_prepare_dma.jpg Graphic file (type QTm)
 
 <use  "images/udma_prepare_dma.jpg" >
 File: images/udma_func.jpeg Graphic file (type QTm)
- <use  "images/udma_func.jpeg" > [9]
+ <use  "images/udma_func.jpeg" > [10]
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 124.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 124.
 
-[10] [11] [12] [13]
+[11] [12] [13] [14]
 Overfull \hbox (19.1936pt too wide) in paragraph at lines 181--182
 \TU/TimesNewRoman(0)/m/n/12 To combine driver and device, please make sure the 
 string behind “uio_pdrv_genirq.of_id=”(in
@@ -1751,23 +1753,23 @@ Overfull \hbox (22.88066pt too wide) in paragraph at lines 185--186
  [][] 
  []
 
-) (./src/Environment_Framework.tex [14] [15]
+) (./src/Environment_Framework.tex [15] [16]
 Chapter 4.
-) (./src/analysis.tex [16
+) (./src/analysis.tex [17
 
 ]
 Chapter 5.
-) (./src/conclusion.tex [17
+) (./src/conclusion.tex [18
 
-] [18]
+] [19]
 Chapter 6.
-) [19
+) [20
 
 ] (./main.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 24.
 
-) [20
+) [21
 
 
 ] (./main.aux)
@@ -1779,12 +1781,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 38705 strings out of 493005
- 919562 string characters out of 6134596
- 1150988 words of memory out of 5000000
- 42162 multiletter control sequences out of 15000+600000
+ 38708 strings out of 493005
+ 919650 string characters out of 6134596
+ 1151028 words of memory out of 5000000
+ 42164 multiletter control sequences out of 15000+600000
  6632 words of font info for 55 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  62i,8n,96p,10432b,1670s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (27 pages).
+Output written on main.pdf (28 pages).
