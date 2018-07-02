@@ -7,8 +7,8 @@
 \contentsline {subsection}{\numberline {2.1.2}Linux Kernel Driver}{3}
 \contentsline {section}{\numberline {2.2}UIO}{3}
 \contentsline {section}{\numberline {2.3}AXI Bus}{5}
-\contentsline {subsection}{\numberline {2.3.1}AMBA}{5}
-\contentsline {subsection}{\numberline {2.3.2}AXI4}{5}
+\contentsline {subsection}{\numberline {2.3.1}AMBA}{6}
+\contentsline {subsection}{\numberline {2.3.2}AXI4}{6}
 \contentsline {section}{\numberline {2.4}DMA}{6}
 \contentsline {subsection}{\numberline {2.4.1}DMA Engine }{6}
 \contentsline {chapter}{\numberline {3}Proposed solution }{7}
