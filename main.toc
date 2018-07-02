@@ -1,33 +1,33 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}
 \contentsline {section}{\numberline {1.1}Motivation}{1}
-\contentsline {section}{\numberline {1.2}Contribution}{1}
-\contentsline {chapter}{\numberline {2}Preliminaries}{2}
-\contentsline {section}{\numberline {2.1}Embedded Linux}{2}
-\contentsline {subsection}{\numberline {2.1.1}Device Tree}{2}
-\contentsline {subsection}{\numberline {2.1.2}Linux Kernel Driver}{3}
-\contentsline {section}{\numberline {2.2}UIO}{3}
-\contentsline {section}{\numberline {2.3}AXI Bus}{5}
-\contentsline {subsection}{\numberline {2.3.1}AMBA}{6}
-\contentsline {subsection}{\numberline {2.3.2}AXI4}{6}
-\contentsline {section}{\numberline {2.4}DMA}{6}
-\contentsline {subsection}{\numberline {2.4.1}DMA Engine }{6}
-\contentsline {chapter}{\numberline {3}Proposed solution }{7}
-\contentsline {section}{\numberline {3.1}Problems}{7}
-\contentsline {subsection}{\numberline {3.1.1}File Operations.}{7}
-\contentsline {subsection}{\numberline {3.1.2}Scatter Gather}{10}
-\contentsline {subsection}{\numberline {3.1.3}Cache Coherency}{10}
-\contentsline {section}{\numberline {3.2}Linux UIO driver for AXI DMA}{10}
-\contentsline {section}{\numberline {3.3}Implementation}{10}
-\contentsline {subsection}{\numberline {3.3.1}Device Tree}{10}
-\contentsline {subsection}{\numberline {3.3.2}Compile New Kernel}{14}
-\contentsline {subsection}{\numberline {3.3.3}Linux On FPGA}{15}
-\contentsline {subsection}{\numberline {3.3.4}Example}{15}
-\contentsline {chapter}{\numberline {4}Environment Framework}{17}
-\contentsline {chapter}{\numberline {5}Analysis}{18}
-\contentsline {section}{\numberline {5.1}AXI FIFO}{18}
-\contentsline {section}{\numberline {5.2}Custom Stream IP}{18}
-\contentsline {subsection}{\numberline {5.2.1}DMA with OpenCores tinyAES}{18}
-\contentsline {subsection}{\numberline {5.2.2}DMA with ECDSA(Curve secp256k1)}{18}
-\contentsline {section}{\numberline {5.3}Comparison}{18}
-\contentsline {chapter}{\numberline {6}Conclusion}{20}
-\contentsline {chapter}{References}{21}
+\contentsline {section}{\numberline {1.2}Contribution}{2}
+\contentsline {chapter}{\numberline {2}Preliminaries}{3}
+\contentsline {section}{\numberline {2.1}Embedded Linux}{3}
+\contentsline {subsection}{\numberline {2.1.1}Device Tree}{3}
+\contentsline {subsection}{\numberline {2.1.2}Linux Kernel Driver}{4}
+\contentsline {section}{\numberline {2.2}UIO}{4}
+\contentsline {section}{\numberline {2.3}AXI Bus}{6}
+\contentsline {subsection}{\numberline {2.3.1}AMBA}{7}
+\contentsline {subsection}{\numberline {2.3.2}AXI4}{7}
+\contentsline {section}{\numberline {2.4}DMA}{7}
+\contentsline {subsection}{\numberline {2.4.1}DMA Engine }{7}
+\contentsline {chapter}{\numberline {3}Proposed solution }{8}
+\contentsline {section}{\numberline {3.1}Problems}{8}
+\contentsline {subsection}{\numberline {3.1.1}File Operations.}{8}
+\contentsline {subsection}{\numberline {3.1.2}Scatter Gather}{11}
+\contentsline {subsection}{\numberline {3.1.3}Cache Coherency}{11}
+\contentsline {section}{\numberline {3.2}Linux UIO driver for AXI DMA}{11}
+\contentsline {section}{\numberline {3.3}Implementation}{11}
+\contentsline {subsection}{\numberline {3.3.1}Device Tree}{11}
+\contentsline {subsection}{\numberline {3.3.2}Compile New Kernel}{15}
+\contentsline {subsection}{\numberline {3.3.3}Linux On FPGA}{16}
+\contentsline {subsection}{\numberline {3.3.4}Example}{16}
+\contentsline {chapter}{\numberline {4}Environment Framework}{18}
+\contentsline {chapter}{\numberline {5}Analysis}{19}
+\contentsline {section}{\numberline {5.1}AXI FIFO}{19}
+\contentsline {section}{\numberline {5.2}Custom Stream IP}{19}
+\contentsline {subsection}{\numberline {5.2.1}DMA with OpenCores tinyAES}{19}
+\contentsline {subsection}{\numberline {5.2.2}DMA with ECDSA(Curve secp256k1)}{19}
+\contentsline {section}{\numberline {5.3}Comparison}{19}
+\contentsline {chapter}{\numberline {6}Conclusion}{21}
+\contentsline {chapter}{References}{22}

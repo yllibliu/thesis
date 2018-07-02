@@ -3,8 +3,7 @@
 %-------------------------------------------------------------------------
 \chapter{Preliminaries}
 \label{cha:Preliminaries}
-In this chapter, we introduce the background technology for our work. 
-Embedded Linux, UIO Driver, AXI Bus, and DMA.
+In this chapter, we introduce the background technology used in our work, including Embedded Linux, UIO Driver, AXI Bus, and DMA.
 
 
 %-------------------------------------------------------------------------
@@ -41,8 +40,9 @@ Device Tree is a mechanism to describe all hardware and devices of a system. In 
 kernel, hardware description is hardcode in kernel file, so porting kernel to different
 ARM-CPU based system is painful. To solve this problem, Device Tree is introduced. 
 Like x86 based system, we should consider Linux kernel image is a black box, and give the 
-hardware informations of system to kernel. \\
+hardware informations of system to kernel.
 %
+
 In FPGA development flow, the whole system almost keeps the same, the only thing that might change 
 is our design in PL(Programmable Logic) side. To boot Linux with different PL design, only 
 a little modification of devicetree file is needed.     

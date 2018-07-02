@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.24)  2 JUL 2018 14:26
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.24)  2 JUL 2018 20:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1450,6 +1450,9 @@ Package: xeCJK-listings 2017/05/15 v3.4.8 xeCJK patch file for listings
 )
 (./main.aux
 
+LaTeX Warning: Label `fig:UIO Driver' multiply defined.
+
+
 LaTeX Warning: Label `subsec:Device Tree' multiply defined.
 
 
@@ -1689,23 +1692,23 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 ] (./src/introduction.tex
 Chapter 1.
-) (./src/Preliminaries.tex [1
+[1
 
 
-]
+]) (./src/Preliminaries.tex [2]
 Chapter 2.
 File: images/linux_boot_stage.jpg Graphic file (type QTm)
 <use  "images/linux_boot_stage.jpg" >
 File: images/embedded_linux.jpg Graphic file (type QTm)
  <use  "images/embedded_linux.jpg" >
-[2
+[3
 
 ]
 File: images/linux_kernel_driver.jpg Graphic file (type QTm)
- <use  "images/linux_kernel_driver.jpg" > [3]
+ <use  "images/linux_kernel_driver.jpg" > [4]
 File: images/uio.jpg Graphic file (type QTm)
  <use  "images/uio.jpg" >
-[4] [5]) (./src/proposed_solution.tex [6]
+[5] [6]) (./src/proposed_solution.tex [7]
 Chapter 3.
 File: images/customAXI4IP.jpg Graphic file (type QTm)
 <use  "images/customAXI4IP.jpg" >
@@ -1720,15 +1723,15 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-) [7
+) [8
 
 ]
 
-LaTeX Warning: Text page 8 contains only floats.
+LaTeX Warning: Text page 9 contains only floats.
 
-[8]
+[9]
 File: images/uio_func_write.png Graphic file (type QTm)
- <use  "images/uio_func_write.png" > [9]
+ <use  "images/uio_func_write.png" > [10]
 File: images/cache_coherency.jpg Graphic file (type QTm)
 
 <use  "images/cache_coherency.jpg" >
@@ -1738,13 +1741,13 @@ File: images/udma_prepare_dma.jpg Graphic file (type QTm)
 
 <use  "images/udma_prepare_dma.jpg" >
 File: images/udma_func.jpeg Graphic file (type QTm)
- <use  "images/udma_func.jpeg" > [10]
+ <use  "images/udma_func.jpeg" > [11]
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 124.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 124.
 
-[11] [12] [13] [14]
+[12] [13] [14] [15]
 Overfull \hbox (19.1936pt too wide) in paragraph at lines 181--182
 \TU/TimesNewRoman(0)/m/n/12 To combine driver and device, please make sure the 
 string behind “uio_pdrv_genirq.of_id=”(in
@@ -1756,23 +1759,23 @@ Overfull \hbox (22.88066pt too wide) in paragraph at lines 185--186
  [][] 
  []
 
-) (./src/Environment_Framework.tex [15] [16]
+) (./src/Environment_Framework.tex [16] [17]
 Chapter 4.
-) (./src/analysis.tex [17
+) (./src/analysis.tex [18
 
 ]
 Chapter 5.
-) (./src/conclusion.tex [18
+) (./src/conclusion.tex [19
 
-] [19]
+] [20]
 Chapter 6.
-) [20
+) [21
 
 ] (./main.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 24.
 
-) [21
+) [22
 
 
 ] (./main.aux)
@@ -1792,4 +1795,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  62i,8n,96p,10432b,1670s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (28 pages).
+Output written on main.pdf (29 pages).
