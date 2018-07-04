@@ -37,7 +37,7 @@ on an embedded system(for example:router). Figure~\ref{fig:Linux Boot Stage on T
 \label{subsec:Device Tree}
 
 Device Tree is a mechanism to describe all hardware and devices of a system. In early Linux 
-kernel, hardware description is hardcode in kernel file, so porting kernel to different
+kernel, hardware description is hardcode in kernel files, so porting kernel to different
 ARM-CPU based system is painful. To solve this problem, Device Tree is introduced. 
 Like x86 based system, we should consider Linux kernel image is a black box, and give the 
 hardware informations of system to kernel.
@@ -108,7 +108,7 @@ It is a on-chip bus interface that is targeted at high performance, high clock f
  
 \subsection{AXI4}
 \label{subsec:AXI4}
-AXI4
+AXI4 
 \begin{itemize}
 \item AXI4:
 \item AXI4-Lite:
@@ -130,3 +130,12 @@ DMA(Direct Memory Access) is a feature that allows hardware subsystems to access
 
 \subsection{DMA Engine }
 \label{subsec:DMA Engine}
+In real world, we use DMA controller to handle DMA works, by setting value to registers to submit the transactions. But this is in hardware perspective, if we want to use DMA more smartly, we need to abstract this concept to software-level, then there is the ``DMA Engine''. By using the DMA Engine, we can use DMA easily by following the steps below:
+\begin{itemize}
+\setlength{\itemsep}{0pt}
+\item[\textbf{1.}] Request Slave Channel
+\item[\textbf{2.}] Set parameters 
+\item[\textbf{3.}] Get a descriptor for transaction
+\item[\textbf{4.}] Submit the transaction
+\item[\textbf{5.}] Issue pending requests and wait for callback notification
+\end{itemize}

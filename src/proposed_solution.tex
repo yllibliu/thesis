@@ -140,32 +140,30 @@ udma0 {
 \end{lstlisting}
 where dmas property refers to the DMA channel under ``axidma'' in device tree, for example, if ``axidma'' looks like:
 \begin{lstlisting}[frame=single,language=C]
-        loopback_dma: axidma@40410000 {
-            #dma-cells = <1>;
-            compatible = "xlnx,axi-dma";
-            reg = < 0x40410000 0x10000 >;
-
-            xlnx,include-sg;
-            loopback_dma_mm2s_chan: dma-channel@40410000 {
-                compatible = "xlnx,axi-dma-mm2s-channel";
-                interrupt-parent = <&gic>;
-                interrupts = <0 31 4>; 
-                xlnx,datawidth = <0x20>;        
-                xlnx,sg-length-width = <14>;    
-                xlnx,device-id = <0x1>;     
-            };
-
-            loopback_dma_s2mm_chan: dma-channel@40410030 {
-                compatible = "xlnx,axi-dma-s2mm-channel";
-                interrupt-parent = <&gic>;
-                interrupts = <0 32 4>;  
-                xlnx,datawidth = <0x20>;       
-                xlnx,sg-length-width = <14>;    
-                xlnx,device-id = <0x1>;    
-            };
-        };
+loopback_dma: axidma@40410000 {
+    #dma-cells = <1>;
+    compatible = "xlnx,axi-dma";
+    reg = < 0x40410000 0x10000 >;
+    xlnx,include-sg;
+    loopback_dma_mm2s_chan: dma-channel@40410000 {
+        compatible = "xlnx,axi-dma-mm2s-channel";
+        interrupt-parent = <&gic>;
+        interrupts = <0 31 4>; 
+        xlnx,datawidth = <0x20>;        
+        xlnx,sg-length-width = <14>;    
+        xlnx,device-id = <0x1>;     
+    };
+	loopback_dma_s2mm_chan: dma-channel@40410030 {
+        compatible = "xlnx,axi-dma-s2mm-channel";
+        interrupt-parent = <&gic>;
+        interrupts = <0 32 4>;  
+        xlnx,datawidth = <0x20>;       
+        xlnx,sg-length-width = <14>;    
+        xlnx,device-id = <0x1>;    
+    };
+};
 \end{lstlisting}
-then ``dmas'' should be ``<\&loopback\_dma 0 \&loopback\_dma >'', dma-names is fixed in driver, please make sure the names are same as the setting. ``dirs'' tells driver the direction of DMA channel. If the direction is not same as declare in ``axidma'', it will fail when UIO is probing.After all these settings, our UIO driver should catch the device correctly and probe a device node under /dev.
+then ``dmas'' should be ``<\&loopback\_dma 0 \&loopback\_dma >'', dma-names is fixed in driver, please make sure the names are same as the setting. ``dirs'' tells driver the direction of DMA channel. If the direction is not same as declare in ``axidma'', it will fail when UIO is probing.After all these settings, our UIO driver should catch the device correctly and probe a device node under /dev, like /dev/uio0.
 
 \subsection{Compile New Kernel}
 \label{subsec:Compile New Kernel}
@@ -173,12 +171,12 @@ Because we modified the UIO driver and add some new library, we need to compile 
 
 \subsection{Linux On FPGA}
 \label{subsec:Linux On FPGA}
-Same as the we mentioned in former chapter, we boot Linux on FPGA in SD card with two partitions. The boot files in first partition have much changed in our scenario, ``devicetree.dtb'' and ``uImage'' we have discussed in former subsection. The modification in ``uEnv.txt'' is quite easy, this file provides additional environment variables for the bootloader,U-boot. It will looks like: 
+Same as the we mentioned in former chapter, we boot Linux on FPGA in SD card with two partitions. The boot files in first partition have much changed in our scenario, ``devicetree.dtb'' and ``uImage'' we have discussed in former subsection. The modification in ``uEnv.txt'' is quite easy, this file provides additional environment variables for the bootloader, U-boot. It will looks like: 
 \begin{lstlisting}[frame=single,language=C]
 bootargs=console=ttyPS0,115200 root=/dev/mmcblk0p2 rootwait rw earlyprintk uio_pdrv_genirq.of_id=genric-uio
 sdboot=if mmcinfo; then run uenvboot; echo Copying Linux from SD to RAM... && load mmc 0 ${kernel_load_address} ${kernel_image} && load mmc 0 ${devicetree_load_address} ${devicetree_image} && load mmc 0 ${ramdisk_load_address} ${ramdisk_image} && bootm ${kernel_load_address} - ${devicetree_load_address}; fi
 \end{lstlisting}
-To combine driver and device, please make sure the string behind ``uio\_pdrv\_genirq.of\_id=''(in this case, is ``generic-uio'') is same as the property ``compatible'' in device tree file.
+To combine driver and device, please make sure the string behind ``uio\_pdrv\_genirq.of\_id=''(in this case, is ``generic-uio'') is same as the property ``compatible'' of UIO node in device tree file.
 
 \begin{figure}[!htb]
   \centering
@@ -187,7 +185,7 @@ To combine driver and device, please make sure the string behind ``uio\_pdrv\_ge
   \label{fig:Embedded Linux on FPGA(UDMA ver.)}
 \end{figure}
 
-Figure~\ref{fig:Embedded Linux on FPGA(UDMA ver.)} gives a simple illustration of our scenario.Unlike lots changes in first partition of SD card, we keep second partition as usual, this partition provides the file system when we boot our Linux, just keeps it as the same.
+Figure~\ref{fig:Embedded Linux on FPGA(UDMA ver.)} gives a simple illustration of our scenario. Unlike having lots of changes in 1st partition of SD card, we keep 2nd partition as usual, this partition provides the root file system when we boot up our Linux, just keeps it as the same.
 
 \subsection{Example}
 \label{subsec:Example}
