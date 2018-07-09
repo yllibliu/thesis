@@ -21,6 +21,28 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{linaro}
+``Linaro,'' \url{https://www.linaro.org/developers/}, accessed: 2018-07-04.
+
+\bibitem{concise}
+``Embedded linux on zedboard repository,''
+  \url{https://github.com/concise/zedboard-hwswcodesign-example}, accessed:
+  2018-07-04.
+
+\bibitem{howtoUIO}
+``The userspace i/o howto,''
+  \url{https://www.kernel.org/doc/html/v4.11/driver-api/uio-howto.html},
+  accessed: 2018-07-04.
+
+\bibitem{axiref}
+``Xilinx axi reference guide,''
+  \url{https://www.xilinx.com/support/documentation/ip_documentation/axi_ref_guide/latest/ug1037-vivado-axi-reference-guide.pdf},
+  accessed: 2018-07-04.
+
+\bibitem{mainwork}
+``Linux uio for axi dma,'' \url{https://github.com/yllibliu/dma}, accessed:
+  2018-07-04.
+
 \bibitem{xlnxkernel}
 ``Xilinx linux kernel repository,'' \url{https://github.com/Xilinx/linux-xlnx},
   accessed: 2018-07-04.

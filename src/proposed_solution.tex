@@ -4,10 +4,23 @@
 
 \chapter{Proposed solution }
 \label{cha:proposed solution }
-Now we can finally conclude why UIO driver doesn't work on some IPs with DMA, because AXI-Stream is a special bus protocol which is not compatible with AXI4 bus protocol. Figure~\ref{fig:Custom IP with AXI4-Lite/Full Register.} and Figure~\ref{fig:Custom IP with DMA and AXI-Stream Register.} show the difference of two designs. So, if we want to use UIO driver to control our custom AXI-Stream IP, we need to adapt UIO driver to control the DMA controller so that we can use it to submit DMA transaction to our IP.
+There are three types register in Vivado design, Lite,Full and Stream, 
 
-We have modeled the high level problem and proposed a possible solution, but there is still some concerns. How do we submit DMA transaction through UIO? Is there any problem when doing the DMA transaction? 
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[scale=0.7]{images/register_type.jpg}
+  \caption[Register types in Vivado]{Register types in Vivado}
+  \label{fig:Register types in Vivado}
+\end{figure}
 
+These three types follows the protocol defined in AXI bus interface, and in our observation, UIO works if we choose first two types, the thing goes wrong when we choose the third type ``Stream'' type. In \textbf{AXI refence guide} \cite{axiref}, we find that lite and full register follow the AXI4-Lite and AXI4 protocol, these protocols need to send the memory address when we transfer data. We can consider AXI4-Lite protocol is an easy-setting but function-restricted version of AXI4 protocol. While the stream register which follows the AXI4-Stream protocol is totally different, it does not need to specify the memory address and is an unidirectional channel.That is, in pratical, if we want read and write operation, we need at least two channels. This kind protocol is obvious that it can't be recognized in operation system as system memory.
+
+Now we can finally conclude why UIO driver doesn't work on some IPs with DMA, because AXI4-Stream is a special bus protocol which is not compatible with AXI4 bus protocol. Figure~\ref{fig:Custom IP with AXI4-Lite/Full Register.} and Figure~\ref{fig:Custom IP with DMA and AXI-Stream Register.} show the difference of two designs. So, if we want to use UIO driver to control our custom AXI4-Stream IP, we need to adapt UIO driver to control the DMA controller so that we can use it to submit DMA transaction to our IP.
+
+We have modeled the high level problem and proposed a possible solution, but there still has some concerns. How do we submit DMA transaction through UIO to DMA controller? Is there any problem when doing the DMA transaction? 
+
+
+\newpage
 \begin{figure}[!htb]
   \centering
   \includegraphics[scale=0.3]{images/customAXI4IP.jpg}
@@ -21,58 +34,50 @@ We have modeled the high level problem and proposed a possible solution, but the
   \caption[Custom IP with DMA and AXI-Stream Register.]{Custom IP with DMA and AXI-Stream Register.}
   \label{fig:Custom IP with DMA and AXI-Stream Register.}
 \end{figure}
+ 
+
 %-------------------------------------------------------------------------
 % Section: 圖表
 %-------------------------------------------------------------------------
 \section{Problems}
 \label{sec:Problems}
 
+In this section, we will talk about File Operations, Continuous Memory For DMA, and Cache Coherency. We will explain these problems and show how we solve these problems in the following subsections.
+
 \subsection{File Operations.}
 \label{subsec:File Operations}
-Recall the normal usage of custom AXI4-Full/Lite IP with UIO,
+Let's see a simple example of controlling custom AXI4-Full/Lite IP with UIO,
+
+{\renewcommand\baselinestretch{0.8}\selectfont
 \begin{lstlisting}[frame=single,language=C]
 int main(void)
 {
-    int fd = open("/dev/uio0", O_RDWR);
-    void *ptr = mmap(0, 0x10000, PROT_READ|PROT_WRITE, 
-                     MAP_SHARED, fd, 0);
-    volatile uint32_t *ctrl = (uint32_t *)ptr;
-    *ctrl = 0x00000000;
-    ...
+  int fd = open("/dev/uio0", O_RDWR);
+  void *ptr = mmap(0, 0x10000, PROT_READ|PROT_WRITE, MAP_SHARED, fd, 0);
+  volatile uint32_t *ctrl = (uint32_t *)ptr;
+  *ctrl = 0x00000000;
+  ...
 }
 \end{lstlisting}
-typically, we open the device node to get device register pointer and memory-map to user memory, then we can manupulate the register like it is ..... The point is, we need file operations to communicate with DMA in UIO driver, 
+\par}
+Typically, we open the device node to get device register pointer and memory-map to user memory, then we assign the value to those memory address to control the registers. Please note that, we need file operations to communicate with DMA in UIO driver, but in origianl scenario, we only use \textbf{mmap()} and the following value assignment has nothing to do with UIO driver. We need to find some file operations as a function entry. 
 
-Let's take a look at two file operations \textbf{write(), read()}. Figure~\ref{fig:UIO write andread functions.} shows what these two functions doing, basicly, these two functions in UIO driver is the handle about interrupt control. However, in our design, UIO node is actually a virtual device node, so interrupt control (and memory map) is no more needed. That means we can use \textbf{write(), read()} to do the \emph{\textbf{real}} read/write work.
 
-
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[scale=0.5]{images/uio_func_write.png}
-  \caption[UIO write/read functions.]{UIO write/read functions}
-  \label{fig:UIO write andread functions.}
-\end{figure}
-
-\subsection{Scatter Gather}
-\label{subsec:Scatter Gather}
+\subsection{Continuous Memory For DMA}
+\label{subsec:Continuous Memory For DMA}
 In tranditional DMA transaction, it can only accept a contiguous (nonsegmented) block of
 physical memory, so, if we want to use DMA in userspace, and we can not get a contiguous 
-memory space(like CMA), then we need to use DMA Scatter/Gather mode. This mode allows non-
-contiguous (nonsegmented) block of physical memory and this mode need to be turn on in Vivado 
-design first. In this mode, DMA controller automatically give the start address of the 
-segmented of memory after the previous transaction of segmented memory is completed. To 
-apply this mode, we need to construct a special data structure, Scatterlist, which collects 
-start address and lengths of segmented block of user buffer memory. DMA engine will do the
-transaction according to this list. 
+memory space(like CMA), 
+
+
 
 
 \subsection{Cache Coherency}
 \label{subsec:Cache Coherency}
-While using DMA to do the data transfering, it may lead cache coherency problems. If we want to receive data to the buffer through the DMA, but the buffer is in cache now, to apply transaction, we give controller the buffer address and length. Once the transaction is done, we read the buffer and the value is same as old value. CPU think the value in memory is not changed because whole data transfering is through DMA controller, so CPU keeps the old buffer data in cache, that makes the difference between cache data and real data. Figure~\ref{fig:Cache Coherency Problems.} shows the cache coherency problem, both read and write may lead this problem, so if we want to transfer correct data, we must solve this problem.
-
+While using DMA to do the data transfering, it may lead cache coherency problems. If we want to receive data to the buffer through the DMA, but the buffer is in cache now, to apply transaction, we give controller the buffer address and length. Once the transaction is done, we read the buffer and the value is same as old value. CPU think the value in memory is not changed because whole data transfering is through DMA controller, so CPU keeps the old buffer data in cache, that makes the difference between cache data and real data. Figure~\ref{fig:Cache Coherency Problems.} shows the cache coherency problem, both read and write may lead this problem, so if we want to transfer the correct data, we must solve this problem.
 \begin{figure}[!htb]
   \centering
-  \includegraphics[scale=0.2]{images/cache_coherency.jpg}
+  \includegraphics[scale=0.5]{images/cache_coherency.jpg}
   \caption[Cache Coherency Problems.]{Cache Coherency Problems.}
   \label{fig:Cache Coherency Problems.}
 \end{figure}
@@ -81,24 +86,40 @@ While using DMA to do the data transfering, it may lead cache coherency problems
 %-------------------------------------------------------------------------
 \section{Linux UIO driver for AXI DMA}
 \label{sec:Linux UIO driver for AXI DMA}
+This sections will demonstrate our main work and explain how we solve the problems we have mentioned in previous section.
 
-
-
-
+Let's take a look at two file operations \textbf{write(), read()} in UIO. Figure~\ref{fig:UIO write and read functions.} shows what these two functions doing, basiclly, these two functions in UIO driver is the handle about interrupt control. However, in our design, UIO node is actually a virtual device node, so interrupt control and memory mapping are no more needed. That means we can use \textbf{write(), read()} to do the \emph{\textbf{real}} read/write, that is, Figure~\ref{fig:UDMA write and read functions(modified)}. 
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[scale=0.5]{images/uio_func_write.png}
+  \caption[UIO write/read functions.]{UIO write/read functions}
+  \label{fig:UIO write and read functions.}
+\end{figure}
 
 \begin{figure}[!htb]
   \centering
   \includegraphics[scale=0.5]{images/udma_func_entry.png}
-  \caption[UIO write/read functions.]{UIO write/read functions}
-  \label{fig:UIO write andread functions.}
+  \caption[UDMA write/read functions(modified)]{UDMA write/read functions(modified)}
+  \label{fig:UDMA write and read functions(modified)}
 \end{figure}
 
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[scale=0.3]{images/udma_prepare_dma.jpg}
-  \caption[Udma Prepare for DMA.]{udma prepare for dma.}
-  \label{fig:Udma Prepare for DMA..}
-\end{figure}
+
+
+To solve the continous memory issues, we apply DMA Scatter Gather mode. This mode allows non-
+contiguous (nonsegmented) block of physical memory and this mode need to be turn on in Vivado 
+design first. In this mode, DMA controller automatically give the start address of the 
+segmented of memory after the previous transaction of segmented memory is completed. To 
+apply this mode, we need to construct a special data structure, Scatterlist, which collects 
+start address and lengths of segmented block of user buffer memory. DMA engine will do the
+transaction according to this list. 
+
+To avoid cache coherency problem, if transaction direction is memory-to-device, we need to flush 
+cache to memory before submit transaction, if the direction is device-to-memory, we need to invalidate 
+the cache after the transfer and before the CPU accesses memory. 
+
+
+
+
 
 
 
@@ -106,8 +127,21 @@ While using DMA to do the data transfering, it may lead cache coherency problems
   \centering
   \includegraphics[scale=0.2]{images/udma_func.jpeg}
   \caption[UDMA write/read functions.]{UDMA write/read functions}
-  \label{fig:UDMA write andread functions.}
+  \label{fig:UDMA write and read functions.}
 \end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[scale=0.3]{images/udma_prepare_dma.jpg}
+  \caption[Udma Prepare for DMA.]{udma prepare for dma.}
+  \label{fig:Udma Prepare for DMA.}
+\end{figure}
+
+
+
+
+
+
 
 %-------------------------------------------------------------------------
 % Section: Implementation
@@ -115,10 +149,14 @@ While using DMA to do the data transfering, it may lead cache coherency problems
 
 \section{Implementation}
 \label{sec:Implementation}
+In this section, we will give a simple tutorial of how to use our new UIO driver and some settings. The entire design environment will be shown in Chapter 4. The full details of usage and code will be uploaded to github repository\cite{mainwork}. 
 
-\subsection{Device Tree}
+
+\subsection{Device Tree File Format}
 \label{subsec:Device Tree}
-In first, we need to set our virtual device in our device tree file, in AXI4 IP, we have device block looks like:
+First, we need to set our virtual device in our device tree file, in AXI4 IP, we have device block looks like:
+
+{\renewcommand\baselinestretch{0.8}\selectfont
 \begin{lstlisting}[frame=single,language=C]
 my_customIP@43c00000 {
 	compatible = "generic-uio";
@@ -127,9 +165,13 @@ my_customIP@43c00000 {
 	interrupt-parent = <0x3>;
 	xlnx,s00-axi-addr-width = <0x6>;
 	xlnx,s00-axi-data-width = <0x20>;
-};
+}
 \end{lstlisting}
-It contains IP name, IP register address, register length, interrupt control...etc. These are essential properties if you want to apply a driver to control the device. But in our design, we have no real device, so the device tree will looks like:
+\par}
+
+It contains IP name, IP register address, register length, interrupt control...etc. These are essential properties if you want to apply a driver to control the device. But in our design, we have no real device, so the device node will looks like:
+
+{\renewcommand\baselinestretch{0.8}\selectfont
 \begin{lstlisting}[frame=single,language=C]
 udma0 {
     compatible = "generic-uio";
@@ -138,7 +180,11 @@ udma0 {
     ezdma,dirs = <2 1>;                 
 };
 \end{lstlisting}
-where dmas property refers to the DMA channel under ``axidma'' in device tree, for example, if ``axidma'' looks like:
+\par}
+
+Where dmas property refers to the DMA channel under ``axidma'' in device tree, for example, if ``axidma'' looks like:
+
+{\renewcommand\baselinestretch{0.8}\selectfont
 \begin{lstlisting}[frame=single,language=C]
 loopback_dma: axidma@40410000 {
     #dma-cells = <1>;
@@ -163,20 +209,25 @@ loopback_dma: axidma@40410000 {
     };
 };
 \end{lstlisting}
-then ``dmas'' should be ``<\&loopback\_dma 0 \&loopback\_dma >'', dma-names is fixed in driver, please make sure the names are same as the setting. ``dirs'' tells driver the direction of DMA channel. If the direction is not same as declare in ``axidma'', it will fail when UIO is probing.After all these settings, our UIO driver should catch the device correctly and probe a device node under /dev, like /dev/uio0.
+\par}
+
+Then ``dmas'' should be ``<\&loopback\_dma 0 \&loopback\_dma >'', dma-names is fixed in driver, please make sure the names are same as the setting. ``dirs'' tells driver the direction of DMA channel. If the direction is not same as declare in ``axidma'', it will fail when UIO is probing.After all these settings, our UIO driver should catch the device correctly and probe a device node under /dev, like /dev/uio0.
 
 \subsection{Compile New Kernel}
 \label{subsec:Compile New Kernel}
-Because we modified the UIO driver and add some new library, we need to compile a new kernel. First, replace the old ``uio.c'' and ``uio\_pdrv\_genirq.c'' with new files. Then put ``udma.c'' under ``drivers/uio'' folder, and ``udma.h'' under ``include/linux'' folder. We need to add ``obj-y\  += udma.o'' in Makefile under ``drivers/uio'' . After, we can compile our new kernel with new UIO driver which can support DMA functions.
+Because we modified the UIO driver and add some new library in Linux kernel, we need to compile a new kernel. First, replace the old ``uio.c'' and ``uio\_pdrv\_genirq.c'' with new files. Then put ``udma.c'' under ``drivers/uio'' folder, and ``udma.h'' under ``include/linux'' folder. We need to add ``obj-y\  += udma.o'' in Makefile under ``drivers/uio'' . After, we can compile our new kernel with new UIO driver which can support DMA functions.
 
-\subsection{Linux On FPGA}
+\subsection{Environment Variables Settings in U-boot}
 \label{subsec:Linux On FPGA}
-Same as the we mentioned in former chapter, we boot Linux on FPGA in SD card with two partitions. The boot files in first partition have much changed in our scenario, ``devicetree.dtb'' and ``uImage'' we have discussed in former subsection. The modification in ``uEnv.txt'' is quite easy, this file provides additional environment variables for the bootloader, U-boot. It will looks like: 
+Same as the we mentioned in Chapter 2, we boot Linux on FPGA from SD card with two partitions. The boot files in first partition have much changed in our scenario, ``devicetree.dtb'' and ``uImage'' we have discussed in former subsection. The modification in ``uEnv.txt'' is quite easy, this file provides additional environment variables for the bootloader, u-boot. It will looks like: 
+
+{\renewcommand\baselinestretch{0.8}\selectfont
 \begin{lstlisting}[frame=single,language=C]
 bootargs=console=ttyPS0,115200 root=/dev/mmcblk0p2 rootwait rw earlyprintk uio_pdrv_genirq.of_id=genric-uio
-sdboot=if mmcinfo; then run uenvboot; echo Copying Linux from SD to RAM... && load mmc 0 ${kernel_load_address} ${kernel_image} && load mmc 0 ${devicetree_load_address} ${devicetree_image} && load mmc 0 ${ramdisk_load_address} ${ramdisk_image} && bootm ${kernel_load_address} - ${devicetree_load_address}; fi
+...
 \end{lstlisting}
-To combine driver and device, please make sure the string behind ``uio\_pdrv\_genirq.of\_id=''(in this case, is ``generic-uio'') is same as the property ``compatible'' of UIO node in device tree file.
+\par}
+To combine driver and device, please make sure that the string behind ``uio\_pdrv\_genirq.of\_id=''(in this case, is ``generic-uio'') is same as the property ``compatible'' of UIO node in device tree file.
 
 \begin{figure}[!htb]
   \centering
@@ -190,3 +241,15 @@ Figure~\ref{fig:Embedded Linux on FPGA(UDMA ver.)} gives a simple illustration o
 \subsection{Example}
 \label{subsec:Example}
 
+{\renewcommand\baselinestretch{0.8}\selectfont
+\begin{lstlisting}[frame=single,language=C]
+int main(void)
+{
+  int fd = open("/dev/uio0", O_RDWR);
+  void *ptr = mmap(0, 0x10000, PROT_READ|PROT_WRITE, MAP_SHARED, fd, 0);
+  volatile uint32_t *ctrl = (uint32_t *)ptr;
+  *ctrl = 0x00000000;
+  ...
+}
+\end{lstlisting}
+\par}

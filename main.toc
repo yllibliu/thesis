@@ -3,31 +3,28 @@
 \contentsline {section}{\numberline {1.2}Contribution}{2}
 \contentsline {chapter}{\numberline {2}Preliminaries}{3}
 \contentsline {section}{\numberline {2.1}Embedded Linux}{3}
-\contentsline {subsection}{\numberline {2.1.1}Device Tree}{3}
-\contentsline {subsection}{\numberline {2.1.2}Linux Kernel Driver}{4}
-\contentsline {section}{\numberline {2.2}UIO}{4}
-\contentsline {section}{\numberline {2.3}AXI Bus}{6}
-\contentsline {subsection}{\numberline {2.3.1}AMBA}{7}
-\contentsline {subsection}{\numberline {2.3.2}AXI4}{7}
-\contentsline {section}{\numberline {2.4}DMA}{7}
-\contentsline {subsection}{\numberline {2.4.1}DMA Engine }{7}
+\contentsline {subsection}{\numberline {2.1.1}Device Tree}{4}
+\contentsline {subsection}{\numberline {2.1.2}Linux Device Driver}{5}
+\contentsline {section}{\numberline {2.2}UIO}{6}
+\contentsline {section}{\numberline {2.3}DMA}{7}
+\contentsline {subsection}{\numberline {2.3.1}DMA Engine }{8}
 \contentsline {chapter}{\numberline {3}Proposed solution }{9}
-\contentsline {section}{\numberline {3.1}Problems}{9}
-\contentsline {subsection}{\numberline {3.1.1}File Operations.}{9}
-\contentsline {subsection}{\numberline {3.1.2}Scatter Gather}{12}
+\contentsline {section}{\numberline {3.1}Problems}{12}
+\contentsline {subsection}{\numberline {3.1.1}File Operations.}{12}
+\contentsline {subsection}{\numberline {3.1.2}Continuous Memory For DMA}{12}
 \contentsline {subsection}{\numberline {3.1.3}Cache Coherency}{12}
-\contentsline {section}{\numberline {3.2}Linux UIO driver for AXI DMA}{12}
-\contentsline {section}{\numberline {3.3}Implementation}{12}
-\contentsline {subsection}{\numberline {3.3.1}Device Tree}{12}
-\contentsline {subsection}{\numberline {3.3.2}Compile New Kernel}{16}
-\contentsline {subsection}{\numberline {3.3.3}Linux On FPGA}{16}
+\contentsline {section}{\numberline {3.2}Linux UIO driver for AXI DMA}{13}
+\contentsline {section}{\numberline {3.3}Implementation}{14}
+\contentsline {subsection}{\numberline {3.3.1}Device Tree File Format}{15}
+\contentsline {subsection}{\numberline {3.3.2}Compile New Kernel}{18}
+\contentsline {subsection}{\numberline {3.3.3}Environment Variables Settings in U-boot}{18}
 \contentsline {subsection}{\numberline {3.3.4}Example}{18}
-\contentsline {chapter}{\numberline {4}Environment Framework}{19}
-\contentsline {chapter}{\numberline {5}Analysis}{20}
-\contentsline {section}{\numberline {5.1}AXI FIFO}{20}
-\contentsline {section}{\numberline {5.2}Custom Stream IP}{20}
-\contentsline {subsection}{\numberline {5.2.1}DMA with OpenCores tinyAES}{20}
-\contentsline {subsection}{\numberline {5.2.2}DMA with ECDSA(Curve secp256k1)}{20}
-\contentsline {section}{\numberline {5.3}Comparison}{20}
-\contentsline {chapter}{\numberline {6}Conclusion}{22}
-\contentsline {chapter}{References}{23}
+\contentsline {chapter}{\numberline {4}Environment Framework}{20}
+\contentsline {chapter}{\numberline {5}Analysis}{21}
+\contentsline {section}{\numberline {5.1}AXI FIFO}{21}
+\contentsline {section}{\numberline {5.2}Custom Stream IP}{21}
+\contentsline {subsection}{\numberline {5.2.1}DMA with OpenCores tinyAES}{21}
+\contentsline {subsection}{\numberline {5.2.2}DMA with ECDSA(Curve secp256k1)}{21}
+\contentsline {section}{\numberline {5.3}Comparison}{21}
+\contentsline {chapter}{\numberline {6}Conclusion}{23}
+\contentsline {chapter}{References}{24}

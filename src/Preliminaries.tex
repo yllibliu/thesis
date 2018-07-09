@@ -3,7 +3,7 @@
 %-------------------------------------------------------------------------
 \chapter{Preliminaries}
 \label{cha:Preliminaries}
-In this chapter, we introduce the background technology used in our work, including Embedded Linux, UIO Driver, AXI Bus, and DMA.
+In this chapter, we introduce the background technology used in our work, including Embedded Linux, UIO Driver, Register Types in Vivado, and DMA.
 
 
 %-------------------------------------------------------------------------
@@ -14,7 +14,9 @@ In this chapter, we introduce the background technology used in our work, includ
 \label{sec:Embedded Linux}
 
 Embedded Linux is a kernel and set of libraries and utilitied designed to run
-on an embedded system(for example:router). Figure~\ref{fig:Linux Boot Stage on Target Platform} shows the stages of booting Linux on the target platform. For example, when turns on the FPGA, the board will boot ROM and find the boot mode setting, then load FSBL(First Stage Bootloader), which will load bitstream to initialize the PL side on FPGA. Then the FGPA will load the SSBL(Second Stage Bootloader), here we use u-boot for demonstration. The main purpose of u-boot is to load Linux Kernel, it loads kernel image with \textbf{\emph{devicetree file}} of the target platform. With well prepared file system(e.g ramdiskfs), the OS should run up successfully.
+on an embedded system(eg: router). In this section, instead of talking about the details of Linux kernel, we explain what happens when we port a OS(operation system) to a platform, in this thesis, we use FPGA as our platform. 
+
+Figure~\ref{fig:Linux Boot Stage on Target Platform} shows the stages of booting Linux on the target platform. For example, when we turns on the FPGA, the board will boot ROM and find the boot mode setting, then load FSBL(First Stage Bootloader), which will load bitstream to initialize the PL side on FPGA. After, it will load the SSBL(Second Stage Bootloader), here we use u-boot for demonstration. The main purpose of u-boot is to load Linux Kernel, it loads kernel image with \textbf{\emph{devicetree file}} of the target platform. With well prepared file system, the Linux should run up successfully, in this thesis, we use uramdisk and linaro\cite{linaro} as our root file system.
 \begin{figure}[!htb]
   \centering
   \includegraphics[scale=0.4]{images/linux_boot_stage.jpg}
@@ -31,14 +33,14 @@ on an embedded system(for example:router). Figure~\ref{fig:Linux Boot Stage on T
   \label{fig:Embedded Linux on FPGA}
 \end{figure}
 
-
+Figure~\ref{fig:Embedded Linux on FPGA} shows an example of how we boot Linux on FPGA\cite{concise}. In this example, we boot Linux on FPGA from SD card, so we need to format SD card to two partitions. The 1st partition is type FAT3, this partition includes all required boot files, that is BOOT.bin, Linux Kernel(uImage), file system(uramdisk.image.gz), and devicetree file(devicetree.dtb). The 2nd partition is type ext4, this partition is used as root file system, so it includes entire root file system, in our case, we use linaro. 
 
 \subsection{Device Tree}
 \label{subsec:Device Tree}
 
 Device Tree is a mechanism to describe all hardware and devices of a system. In early Linux 
-kernel, hardware description is hardcode in kernel files, so porting kernel to different
-ARM-CPU based system is painful. To solve this problem, Device Tree is introduced. 
+kernel, hardware description is hardcoded in kernel files, so porting kernel to different
+platform is painful. To solve this problem, Device Tree is introduced. 
 Like x86 based system, we should consider Linux kernel image is a black box, and give the 
 hardware informations of system to kernel.
 %
@@ -48,13 +50,14 @@ is our design in PL(Programmable Logic) side. To boot Linux with different PL de
 a little modification of devicetree file is needed.     
 
 
-\subsection{Linux Kernel Driver}
-\label{subsec:Linux Kernel Driver} 
+\subsection{Linux Device Driver}
+The role of device driver is a bridge between hardware and software, it communicates with device and provides functions to applications, like Figure~\ref{fig:Linux Device Driver} shows. Device driver is basiclly in linux kernel space, which means if driver is somehow not working correctly, like getting stucked in an infinite for-loop, the entire system will hang. So device driver need to be very robust. 
+
 \begin{figure}[!htb]
   \centering
-  \includegraphics[scale=0.5]{images/linux_kernel_driver.jpg}
-  \caption[Linux Kernel Driver]{Linux Kernel Driver}
-  \label{fig:UIO Driver}
+  \includegraphics[scale=0.5]{images/linux_device_driver.jpg}
+  \caption[Linux Device Driver]{Linux Device Driver}
+  \label{fig:Linux Device Driver}
 \end{figure}
 
 %-------------------------------------------------------------------------
@@ -63,9 +66,9 @@ a little modification of devicetree file is needed.
 
 \section{UIO}
 \label{sec:UIO}
-For many types of devices, creating a Linux kernel driver is overkill. All that is really needed 
+For many types of devices, creating a Linux kernel device driver is overkill. All that is really needed 
 is some way to handle an interrupt and provide access to the memory space of the device. To address 
-this situation, the userspace I/O system (UIO) was designed.Hardware that is ideally suited for an 
+this situation, the userspace I/O system (UIO) was designed. Hardware that is ideally suited for an 
 UIO driver fulfills all of the following:
 %
 \begin{itemize}
@@ -76,8 +79,8 @@ UIO driver fulfills all of the following:
 \end{itemize}
 %
 Figure~\ref{fig:UIO Driver} shows how the UIO system works, in software-side of FPGA development, we 
-only care about the value in the hardware register and when we can get the correct value, so memeory
--mapping to user-spcae application and interrupt handler is realy enough in our design flow.  
+only care about the value in the hardware register and when we can get the correct value, so memeory-mapping 
+to user-spcae application and interrupt handler is really enough in our design flow\cite{howtoUIO}.  
 %
 \begin{figure}[!htb]
   \centering
@@ -87,33 +90,25 @@ only care about the value in the hardware register and when we can get the corre
 \end{figure}
 
 %-------------------------------------------------------------------------
-% Section: AXI Bus
+% Section: this section may remove because is so hard to explain clearly.
 %-------------------------------------------------------------------------
-\section{AXI Bus}
-\label{sec:AXI Bus}
+%\section{Register Types in Vivado}
+%\label{sec:Register Types in Vivado}
+%When we design custom IP in Vivado, there are three types of register we can choose, Lite,Full and Stream. These three types is %based on AXI4 protocol,  
+%\begin{itemize}
+%\item separate address/control and data phases
+%\item support for unaligned data transfers using byte strobes
+%\item burst based transactions with only start address issued
+%\item issuing of multiple outstanding addresses with out of order responses
+%\item easy addition of register stages to provide timing closure.
+%\end{itemize}
 
-Advanced eXtensible Interface (AXI) protocol is part of ARM AMBA(Advanced Microcontroller Bus Architecture).
-It is a on-chip bus interface that is targeted at high performance, high clock frequency system designs and includes features that make it suitable for high speed sub-micrometer interconnect:
-\begin{itemize}
-\item separate address/control and data phases
-\item support for unaligned data transfers using byte strobes
-\item burst based transactions with only start address issued
-\item issuing of multiple outstanding addresses with out of order responses
-\item easy addition of register stages to provide timing closure.
-\end{itemize}
 
-\subsection{AMBA}
-\label{subsec:AMBA}
-
- 
-\subsection{AXI4}
-\label{subsec:AXI4}
-AXI4 
-\begin{itemize}
-\item AXI4:
-\item AXI4-Lite:
-\item AXI4-Stream:
-\end{itemize}
+%\begin{itemize}
+%\item AXI4:
+%\item AXI4-Lite:
+%\item AXI4-Stream:
+%\end{itemize}
 
 
 
@@ -125,9 +120,14 @@ AXI4
 \section{DMA}
 \label{sec:DMA}
 
-DMA(Direct Memory Access) is a feature that allows hardware subsystems to access main system memory independent of CPU. For example, when CPU want to submit a DMA transaction, it needs to give DMA controller where the data is (memory address), and size of the data(data length). After submit, CPU can back to work for other task, once the transaction is done, CPU will receive a interrupt from DMA controller.
- 
-
+DMA(Direct Memory Access) is a feature that allows hardware subsystems to access main system memory independent of CPU. For example, when CPU wants to submit a DMA transaction, it needs to give DMA controller where the data is(memory address), and size of the data(data length). After submit, CPU can go back to work for other tasks, once the transaction is done, CPU will receive a interrupt from DMA controller, and run the callback function.
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[scale=0.5]{images/DMA.jpg}
+  \caption[Direct Memory Access]{Direct Memory Access}
+  \label{fig:DMA}
+\end{figure}
+\newpage
 \subsection{DMA Engine }
 \label{subsec:DMA Engine}
 In real world, we use DMA controller to handle DMA works, by setting value to registers to submit the transactions. But this is in hardware perspective, if we want to use DMA more smartly, we need to abstract this concept to software-level, then there is the ``DMA Engine''. By using the DMA Engine, we can use DMA easily by following the steps below:
