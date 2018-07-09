@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.24)  9 JUL 2018 21:29
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.24)  9 JUL 2018 23:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1745,35 +1745,36 @@ File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 * Try to use `\setCJKmonofont[...]{...}' to define it.
 *************************************************
 File: images/cache_coherency.jpg Graphic file (type QTm)
-<use  "images/cache_coherency.jpg" > [12]
+<use  "images/cache_coherency.jpg" > [12] [13]
 File: images/uio_func_write.png Graphic file (type QTm)
- <use  "images/uio_func_write.png" >
-File: images/udma_func_entry.png Graphic file (type QTm)
 
-<use  "images/udma_func_entry.png" > [13]
+<use  "images/uio_func_write.png" >
+File: images/udma_func_entry.png Graphic file (type QTm)
+ <use  "images/udma_func_entry.png" >
+[14] [15]
 File: images/udma_func.jpeg Graphic file (type QTm)
  <use  "images/udma_func.jpeg" >
 File: images/udma_prepare_dma.jpg Graphic file (type QTm)
 
-<use  "images/udma_prepare_dma.jpg" > [14] [15] [16] [17]
+<use  "images/udma_prepare_dma.jpg" > [16] [17] [18]
 File: images/new_embedded_linux.jpg Graphic file (type QTm)
 
 <use  "images/new_embedded_linux.jpg" >
-Overfull \hbox (22.88066pt too wide) in paragraph at lines 234--235
+Overfull \hbox (22.88066pt too wide) in paragraph at lines 230--231
  [][] 
  []
 
-) (./src/Environment_Framework.tex [18] [19]
+[19] [20]) (./src/Environment_Framework.tex [21]
 Chapter 4.
-) (./src/analysis.tex [20
+) (./src/analysis.tex [22
 
 ]
 Chapter 5.
-) (./src/conclusion.tex [21
+) (./src/conclusion.tex [23
 
-] [22]
+] [24]
 Chapter 6.
-) [23
+) [25
 
 ] (./main.bbl
 Underfull \hbox (badness 1642) in paragraph at lines 28--31
@@ -1799,7 +1800,7 @@ Underfull \hbox (badness 1803) in paragraph at lines 47--49
 com/Xilinx/linux-xlnx, accessed:
  []
 
-) [24
+) [26
 
 
 ] (./main.aux)
@@ -1811,12 +1812,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 38986 strings out of 493005
- 924467 string characters out of 6134596
- 1146197 words of memory out of 5000000
- 42431 multiletter control sequences out of 15000+600000
+ 39007 strings out of 493005
+ 924698 string characters out of 6134596
+ 1192197 words of memory out of 5000000
+ 42452 multiletter control sequences out of 15000+600000
  6624 words of font info for 54 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 62i,8n,96p,10432b,1640s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,8n,96p,10432b,1168s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (31 pages).
+Output written on main.pdf (33 pages).

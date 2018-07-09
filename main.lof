@@ -11,10 +11,10 @@
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Custom IP with DMA and AXI-Stream Register.}}{11}
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Cache Coherency Problems.}}{13}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces UIO write/read functions.}}{14}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces UDMA write/read functions(modified)}}{15}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces UIO write/read functions(modified)}}{15}
 \contentsline {figure}{\numberline {3.7}{\ignorespaces UDMA write/read functions.}}{16}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Udma Prepare for DMA.}}{17}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Embedded Linux on FPGA(UDMA ver.)}}{19}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Udma Prepare for DMA}}{17}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Embedded Linux on FPGA(UDMA ver.)}}{20}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

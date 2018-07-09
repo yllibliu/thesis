@@ -74,13 +74,14 @@ memory space(like CMA),
 
 \subsection{Cache Coherency}
 \label{subsec:Cache Coherency}
-While using DMA to do the data transfering, it may lead cache coherency problems. If we want to receive data to the buffer through the DMA, but the buffer is in cache now, to apply transaction, we give controller the buffer address and length. Once the transaction is done, we read the buffer and the value is same as old value. CPU think the value in memory is not changed because whole data transfering is through DMA controller, so CPU keeps the old buffer data in cache, that makes the difference between cache data and real data. Figure~\ref{fig:Cache Coherency Problems.} shows the cache coherency problem, both read and write may lead this problem, so if we want to transfer the correct data, we must solve this problem.
+While using DMA to do the data transfering, it may lead cache coherency problems. If we want to receive data to the buffer through the DMA, but the buffer is in cache now, to apply transaction, we give controller the buffer address and length. Once the transaction is done, we read the buffer and the value is the same as old value. CPU think the value in memory is not changed because whole data transfering is through DMA controller, so CPU keeps the old buffer data in cache, that makes the difference between cache data and real data. Figure~\ref{fig:Cache Coherency Problems.} shows the cache coherency problem, both read and write may lead this problem, so if we want to transfer the correct data, we must solve this problem.
 \begin{figure}[!htb]
   \centering
   \includegraphics[scale=0.5]{images/cache_coherency.jpg}
   \caption[Cache Coherency Problems.]{Cache Coherency Problems.}
   \label{fig:Cache Coherency Problems.}
 \end{figure}
+\newpage
 %-------------------------------------------------------------------------
 % Section: 圖表
 %-------------------------------------------------------------------------
@@ -88,7 +89,9 @@ While using DMA to do the data transfering, it may lead cache coherency problems
 \label{sec:Linux UIO driver for AXI DMA}
 This sections will demonstrate our main work and explain how we solve the problems we have mentioned in previous section.
 
-Let's take a look at two file operations \textbf{write(), read()} in UIO. Figure~\ref{fig:UIO write and read functions.} shows what these two functions doing, basiclly, these two functions in UIO driver is the handle about interrupt control. However, in our design, UIO node is actually a virtual device node, so interrupt control and memory mapping are no more needed. That means we can use \textbf{write(), read()} to do the \emph{\textbf{real}} read/write, that is, Figure~\ref{fig:UDMA write and read functions(modified)}. 
+Let's take a look at two file operations \textbf{write(), read()} in UIO. Figure~\ref{fig:UIO write and read functions.} shows what these two functions doing, basiclly, these two functions in UIO driver is the handle about interrupt control. However, in our design, UIO node is actually a virtual device node, so interrupt control and memory mapping are no more needed. That means we can use \textbf{write(), read()} to do the \emph{\textbf{real}} read/write, that is, Figure~\ref{fig:UIO write and read functions(modified)}. 
+
+%\newpage
 \begin{figure}[!htb]
   \centering
   \includegraphics[scale=0.5]{images/uio_func_write.png}
@@ -99,12 +102,12 @@ Let's take a look at two file operations \textbf{write(), read()} in UIO. Figure
 \begin{figure}[!htb]
   \centering
   \includegraphics[scale=0.5]{images/udma_func_entry.png}
-  \caption[UDMA write/read functions(modified)]{UDMA write/read functions(modified)}
-  \label{fig:UDMA write and read functions(modified)}
+  \caption[UIO write/read functions(modified)]{UIO write/read functions(modified)}
+  \label{fig:UIO write and read functions(modified)}
 \end{figure}
 
 
-
+\newpage
 To solve the continous memory issues, we apply DMA Scatter Gather mode. This mode allows non-
 contiguous (nonsegmented) block of physical memory and this mode need to be turn on in Vivado 
 design first. In this mode, DMA controller automatically give the start address of the 
@@ -116,12 +119,10 @@ transaction according to this list.
 To avoid cache coherency problem, if transaction direction is memory-to-device, we need to flush 
 cache to memory before submit transaction, if the direction is device-to-memory, we need to invalidate 
 the cache after the transfer and before the CPU accesses memory. 
-
-
-
-
-
-
+{}
+%\newpage
+These two problem will be considered in ``udma prepare dma'' shows in Figure~\ref{fig:UDMA write and read functions.}
+In ``udma prepare dma'' function, we first \textbf{construct the scatterlist}, and call dma\_map\_sg() API provided by DMA engine to deal with the cache coherency problem in \textbf{Map the Scatterlist} stage. After all these settings, we can submit our DMA transaction to DMA controller, the following process is just like we have discussed in Section~\ref{sec:DMA}. Figure~\ref{fig:Udma Prepare for DMA} illustrates the stages in UDMA\_prepare\_DMA() function.
 
 \begin{figure}[!htb]
   \centering
@@ -130,18 +131,13 @@ the cache after the transfer and before the CPU accesses memory.
   \label{fig:UDMA write and read functions.}
 \end{figure}
 
-\begin{figure}[!htb]
+\begin{figure}[p]
   \centering
   \includegraphics[scale=0.3]{images/udma_prepare_dma.jpg}
-  \caption[Udma Prepare for DMA.]{udma prepare for dma.}
-  \label{fig:Udma Prepare for DMA.}
+  \caption[Udma Prepare for DMA]{UDMA prepare for dma}
+  \label{fig:Udma Prepare for DMA}
 \end{figure}
-
-
-
-
-
-
+\newpage
 
 %-------------------------------------------------------------------------
 % Section: Implementation
@@ -211,7 +207,7 @@ loopback_dma: axidma@40410000 {
 \end{lstlisting}
 \par}
 
-Then ``dmas'' should be ``<\&loopback\_dma 0 \&loopback\_dma >'', dma-names is fixed in driver, please make sure the names are same as the setting. ``dirs'' tells driver the direction of DMA channel. If the direction is not same as declare in ``axidma'', it will fail when UIO is probing.After all these settings, our UIO driver should catch the device correctly and probe a device node under /dev, like /dev/uio0.
+Then ``dmas'' should be ``<\&loopback\_dma 0 \&loopback\_dma >'', dma-names is fixed in driver, please make sure the names are the same as the setting. ``dirs'' tells driver the direction of DMA channel. If the direction is not the same as declaration in ``axidma'', it will fail when UIO is probing. ``mm2s'' means ``memory map to stream'', represents for the tx channel. ``s2mm'' means ``stream to memorymap'' represents for the rx channel. After all these settings, our UIO driver should probe the device correctly and create a device node under /dev, like /dev/uio0.
 
 \subsection{Compile New Kernel}
 \label{subsec:Compile New Kernel}
@@ -237,19 +233,51 @@ To combine driver and device, please make sure that the string behind ``uio\_pdr
 \end{figure}
 
 Figure~\ref{fig:Embedded Linux on FPGA(UDMA ver.)} gives a simple illustration of our scenario. Unlike having lots of changes in 1st partition of SD card, we keep 2nd partition as usual, this partition provides the root file system when we boot up our Linux, just keeps it as the same.
+\newpage
 
 \subsection{Example}
 \label{subsec:Example}
+We will demonstrate how to use our driver in C.
 
 {\renewcommand\baselinestretch{0.8}\selectfont
 \begin{lstlisting}[frame=single,language=C]
+Example1:
+
+#define PACKET_SIZE (2048)
+
+uint8_t tx_buf[PACKET_SIZE];
+uint8_t rx_buf[PACKET_SIZE];
+
 int main(void)
 {
   int fd = open("/dev/uio0", O_RDWR);
-  void *ptr = mmap(0, 0x10000, PROT_READ|PROT_WRITE, MAP_SHARED, fd, 0);
-  volatile uint32_t *ctrl = (uint32_t *)ptr;
-  *ctrl = 0x00000000;
-  ...
+  rv1 = write(fd, tx_buf, PACKET_SIZE);
+  rv2 =  read(fd, rx_buf, PACKET_SIZE);
+
 }
 \end{lstlisting}
 \par}
+
+First, we open device node to get device pointer, and if we want to write the data in tx_buf to the device, we call write() function. If we want to read the data in the device to the rx_buf, we call read() function. All three parameters are easy to understand in the above example, the first parameter is device pointer, the second one is buffer pointer and the third one is the data size. Please note that the data size is the number of bytes, so if you declare buffer as type \textbf{uint32_t} which is a 32-bit array then your PACKET_SIZE in function need to be multiplied by 4. 
+
+{\renewcommand\baselinestretch{0.8}\selectfont
+\begin{lstlisting}[frame=single,language=C]
+Example2:
+
+#define PACKET_SIZE (2048)
+
+uint32_t tx_buf[PACKET_SIZE];
+uint32_t rx_buf[PACKET_SIZE];
+
+int main(void)
+{
+  int fd = open("/dev/uio0", O_RDWR);
+  rv1 = write(fd, tx_buf, PACKET_SIZE *4);
+  rv2 =  read(fd, rx_buf, PACKET_SIZE *4);
+
+}
+\end{lstlisting}
+\par}
+
+The return value is the number of bytes, basiclly, it is equal to the value of the third argument you put in the function.
+In example1, rv1 and rv2 is 2048, in example2, rv1 and rv2 is 8192.
