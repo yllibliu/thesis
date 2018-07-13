@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.24)  11 JUL 2018 21:00
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.24)  13 JUL 2018 10:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1770,46 +1770,45 @@ Chapter 4.
 
 ] [23]) (./src/analysis.tex [24]
 Chapter 5.
-) (./src/conclusion.tex [25
+[25
 
-] [26]
+]
+Overfull \hbox (26.33171pt too wide) in paragraph at lines 40--50
+ [][] 
+ []
+
+) (./src/conclusion.tex [26]
 Chapter 6.
 ) [27
 
 ] (./main.bbl
-Underfull \hbox (badness 1642) in paragraph at lines 28--31
-[]\TU/TimesNewRoman(0)/m/n/12 “Embedded linux on zedboard repository,” https://
-github.com/concise/zedboard-
- []
-
-
-Underfull \hbox (badness 1038) in paragraph at lines 33--36
-[]\TU/TimesNewRoman(0)/m/n/12 “The userspace i/o howto,” https://www.kernel.org
-/doc/html/v4.11/driver-api/uio-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 38--41
-\TU/TimesNewRoman(0)/m/n/12 umentation/axi_-ref_-guide/latest/ug1037-vivado-axi
--reference-guide.pdf, accessed:
+\TU/TimesNewRoman(0)/m/n/12 documentation/axi_-ref_-guide/latest/ug1037-vivado-
+axi-reference-guide.pdf,
  []
 
 
-Underfull \hbox (badness 1803) in paragraph at lines 47--49
-[]\TU/TimesNewRoman(0)/m/n/12 “Xilinx linux kernel repository,” https://github.
-com/Xilinx/linux-xlnx, accessed:
- []
-
-
-Overfull \hbox (43.03366pt too wide) in paragraph at lines 51--54
+Overfull \hbox (49.03366pt too wide) in paragraph at lines 51--54
 []\TU/TimesNewRoman(0)/m/n/12 “Xilinx axi reference guide,” https://releases.li
 naro.org/ubuntu/images/developer/15.12/linaro-
  []
 
-) [28
+
+Underfull \hbox (badness 2173) in paragraph at lines 56--58
+[]\TU/TimesNewRoman(0)/m/n/12 “Xilinx device tree repository,” https://github.c
+om/Xilinx/device-tree-xlnx, ac-
+ []
 
 
-] (./main.aux)
+Underfull \hbox (badness 1629) in paragraph at lines 64--66
+[]\TU/TimesNewRoman(0)/m/n/12 “Ezdma project on github,” https://github.com/jer
+emytrimble/ezdma, accessed:
+ []
+
+[28
+
+
+]) [29] (./main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1818,12 +1817,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 39060 strings out of 493005
- 925351 string characters out of 6134596
- 1192214 words of memory out of 5000000
- 42505 multiletter control sequences out of 15000+600000
+ 39059 strings out of 493005
+ 925290 string characters out of 6134596
+ 1192178 words of memory out of 5000000
+ 42504 multiletter control sequences out of 15000+600000
  6624 words of font info for 54 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  62i,8n,96p,10432b,1636s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (35 pages).
+Output written on main.pdf (36 pages).

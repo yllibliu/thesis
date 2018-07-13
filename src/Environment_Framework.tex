@@ -55,9 +55,9 @@ dma@40400000 {
 \end{lstlisting}
 \par}
 
-In ``interrupt'' property,	``interrupts = <0x0 0x1d 0x4 0x0 0x1e 0x4>;'' means we have two interrupts, <0x0 0x1d 0x4> and <0x0 0x1e 0x4> because we have two DMA channel in our design. The second term(0x1d and 0x1e) is the interrupt number and should be determined when we connect DMA controller to the CPU in Vivado design. But in fact, the generated devicetree file sometimes may set wrong number to this term, and  cause the driver can not probe the device correctly. The third terms(in our example, both are 0x4) is the interrupt type, this term is related to how we treat the interrupt signal, because the devicetree compiler can't know how we design, it just put a default value to this term. So make sure that the setting in devicetree file is corresponding with the design. The interrupt type definition is in \cite{intterrupttypes}
+In ``interrupt'' property,	``interrupts = <0x0 0x1d 0x4 0x0 0x1e 0x4>;'' means we have two interrupts, <0x0 0x1d 0x4> and <0x0 0x1e 0x4>, because we have two DMA channels in our design. The second term(0x1d and 0x1e) is the interrupt number and should be determined when we connect DMA controller to the CPU in Vivado design. But in fact, the generated devicetree file sometimes may set wrong number to this term, and  cause the driver can not probe the device correctly. The third terms(in our example, both are 0x4) is the interrupt type, this term is related to how we treat the interrupt signal, because the devicetree compiler can't know how we design, it just put a default value to this term. So make sure that the setting in devicetree file is corresponding with the design. The interrupt type definition is in \cite{intterrupttypes}
 
-Some label problem may happen also. In devicetree, we can define labels for convenience, let's take alook at the above example again, note that, in ``clocks'' property, it uses label ``\&clk'', to get the correct clock, so there must have some settings like:
+Some label problem may happen also. In devicetree, we can define labels for convenience, let's take a look at the above example again, note that, in ``clocks'' property, it uses label ``\&clk'', to get the correct clock, so there must have some settings like:
 
 {\renewcommand\baselinestretch{0.8}\selectfont
 \begin{lstlisting}[frame=single,language=C]

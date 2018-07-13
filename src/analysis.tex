@@ -4,54 +4,52 @@
 %-------------------------------------------------------------------------
 \chapter{Analysis}
 \label{cha:Analysis}
-This chapter, we use three different IP in our hardware designs. DMA with AXI Stream FIFO, 
-DMA with OpenCores tinyAES and DMA with ECDSA(Curve secp256k1).
+To analyze our works, we find a similar driver called ``ezdma''\cite{ezdma} on github repository as a comparison. The difference between our works and ezdma is that we modify the UIO driver, and ezdma just write a new kernel driver to do the same thing. In our experiment, we use three different AXI4-Stream IPs to test our, one is \textbf{AXI4-Stream FIFO} provided in Vivado, the others are custom AXI4-Stream IPs. We rewrite the \textbf{tinyAES}\cite{tinyaes} from OpenCores\cite{opencores} to a version with DMA, and we write a \textbf{ECDSA IP(with DMA)} with curve secp256k1 which is used in the Bitcoin system. 
 %-------------------------------------------------------------------------
 % Section: FIFO
 %-------------------------------------------------------------------------
 
-\section{AXI FIFO}
-\label{sec:AXI FIFO}
+%\section{AXI4-Stream FIFO}
+%\label{sec:AXI4-Stream FIFO}
 
 %-------------------------------------------------------------------------
 % Section: Stream IP
 %-------------------------------------------------------------------------
 
-\section{Custom Stream IP}
-\label{sec:Custom Stream IP}
+%\section{Custom AXI4-Stream IP}
+%\label{sec:Custom AXI4-Stream IP}
 
-\subsection{DMA with OpenCores tinyAES}
-\label{sec:DMA with OpenCores tinyAES}
 
-\subsection{DMA with ECDSA(Curve secp256k1)}
-\label{sec:DMA with ECDSA(Curve secp256k1)}
+%\subsection{OpenCores tinyAES with DMA}
+%\label{sec:OpenCores tinyAES with DMA}
+
+
+%\subsection{ECDSA(Curve secp256k1) with DMA}
+%\label{sec:ECDSA(Curve secp256k1) with DMA}
 %-------------------------------------------------------------------------
 % Section: 比較
 %-------------------------------------------------------------------------
 \section{Comparison}
 \label{sec:Comparison}
-
-
+%Table~\ref{tab:sample1} shows our test results,it is obvious that our works has almost the same throughput as EZDMA has. 
+%Because our driver is based on UIO driver, it not only do the new works, but remain old works also. So we consider the results is %totally acceptable.
+The performance of our driver can be seen in the table~\ref{tab:sample1}, the \textbf{Frequency} is the fatest frequency that our IP can work correctly, this is determin when we designed our IP in Vivado. In this experiment, we send a transmit package to the DMA controller and send receive package to the DMA controller, that means we send input to the custom IP and we read output from the custom IP, and we repeats 1,000,000 times to get the thoughput. The transmit package size we sent is shown in \textbf{Input} column, and receive package size is shown in \textbf{Output} column. 
+\newpage
 \begin{table}
 \centering
-\begin{tabular}{clr|clr}
+\begin{tabular}{c|c|c|c|c|r}
   \toprule
-    \textbf{Id} & \textbf{Family} & \textbf{\#} & \textbf{Id} & \textbf{Family} & \textbf{\#} \\
+    \textbf{IP} & \textbf{Frequency(Mhz)} & \textbf{Input(Byte)} & \textbf{Output(Byte)} & \textbf{UDMA} & \textbf{EZDMA} \\
   \midrule
-  A & DroidKungFu   & 473 & K & FakePlayer      &  74 \\
-  B & DorDrae       & 420 & L & Wroba           &  74 \\
-  C & Meds          & 221 & M & Plankton        &  63 \\
-  D & Fakeguard     & 203 & N & DroidDreamLight &  52 \\
-  E & Boxer         & 202 & O & Cawitt          &  51 \\
-  F & Kmin          & 183 & P & Badao           &  46 \\
-  G & Rooter        & 117 & Q & Fake10086       &  46 \\
-  H & Boqx          & 114 & R & Cupi            &  39 \\
-  I & DroidAp       & 106 & S & Coogos          &  39 \\
-  J & DroidKungFu3  &  93 & T & DroidDream      &  39 \\
+  FIFO     & 100   & 2048 & 2048   & 16.907 MB/s      &  16.492 MB/s \\
+  tinyAES  & 250   & 32   & 16     & 0.331 MB/s       &  0.334 MB/s  \\
+  ECDSA    & 10    & 128  & 128    & 0.016 MB/s       &  0.015 MB/s  \\
+  
   \bottomrule
 \end{tabular}
-\caption{Top 20 malware families in the dataset.}
+\caption{The test result of 3 different IPs.}
 \label{tab:sample1}
 \end{table}
 
+The result shows that our driver has almost the same throughput as the EZDMA has, and because our driver is a modified version of UIO, and EZDMA is a additional kernel driver, we consider the result is totally reasonable and acceptable.
 
