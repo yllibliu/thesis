@@ -13,11 +13,11 @@ There are three types register in Vivado design, Lite,Full and Stream,
   \label{fig:Register types in Vivado}
 \end{figure}
 
-These three types follows the protocol defined in AXI bus interface, and in our observation, UIO works if we choose first two types, the thing goes wrong when we choose the third type ``Stream'' type. In \textbf{AXI refence guide} \cite{axiref}, we find that lite and full register follow the AXI4-Lite and AXI4 protocol, these protocols need to send the memory address when we transfer data. We can consider AXI4-Lite protocol is an easy-setting but function-restricted version of AXI4 protocol. While the stream register which follows the AXI4-Stream protocol is totally different, it does not need to specify the memory address and is an unidirectional channel.That is, in pratical, if we want read and write operation, we need at least two channels. This kind protocol is obvious that it can't be recognized in operation system as system memory.
+These three types follow the protocol defined in AXI bus interface, and in our observation, UIO driver is working if we choose first two types, the thing goes wrong when we choose the third type ``Stream'' type. In \textbf{AXI reference guide} \cite{axiref}, we find that lite and full register follow the AXI4-Lite and AXI4 protocol, these protocols need to send the memory address when we transfer data. We can consider AXI4-Lite protocol is an easy-setting but function-restricted version of AXI4 protocol. While the stream register which follows the AXI4-Stream protocol is totally different, it does not need to specify the memory address and is a unidirectional channel. That is, in practical, if we want to read and write operation, we need at least two channels. This kind protocol is obvious that it can't be recognized in operation system as system memory.
 
-Now we can finally conclude why UIO driver doesn't work on some IPs with DMA, because AXI4-Stream is a special bus protocol which is not compatible with AXI4 bus protocol. Figure~\ref{fig:Custom IP with AXI4-Lite/Full Register.} and Figure~\ref{fig:Custom IP with DMA and AXI-Stream Register.} show the difference of two designs. So, if we want to use UIO driver to control our custom AXI4-Stream IP, we need to adapt UIO driver to control the DMA controller so that we can use it to submit DMA transaction to our IP.
+Now we can finally conclude why UIO driver doesn't work on some IPs with DMA, because AXI4-Stream is a special bus protocol which is not compatible with the AXI4 bus protocol. Figure~\ref{fig:Custom IP with AXI4-Lite/Full Register.} and Figure~\ref{fig:Custom IP with DMA and AXI-Stream Register.} show the difference of two designs. So, if we want to use UIO driver to control our custom AXI4-Stream IP, we need to adapt UIO driver to control the DMA controller so that we can use it to submit DMA transaction to our IP.
 
-We have modeled the high level problem and proposed a possible solution, but there still has some concerns. How do we submit DMA transaction through UIO to DMA controller? Is there any problem when doing the DMA transaction? 
+We have modeled the high-level problem and proposed a possible solution, but there still has some concerns. How do we submit DMA transaction through UIO to DMA controller? Is there any problem when doing the DMA transaction? 
 
 
 \newpage
@@ -65,7 +65,7 @@ Typically, we open the device node to get device register pointer and memory-map
 
 \subsection{Continuous Memory For DMA}
 \label{subsec:Continuous Memory For DMA}
-In tranditional DMA transaction, it can only accept a contiguous (nonsegmented) block of
+In traditional DMA transaction, it can only accept a contiguous (nonsegmented) block of
 physical memory, so, if we want to use DMA in userspace, and we can not get a contiguous 
 memory space(like CMA), 
 
@@ -74,7 +74,7 @@ memory space(like CMA),
 
 \subsection{Cache Coherency}
 \label{subsec:Cache Coherency}
-While using DMA to do the data transfering, it may lead cache coherency problems. If we want to receive data to the buffer through the DMA, but the buffer is in cache now, to apply transaction, we give controller the buffer address and length. Once the transaction is done, we read the buffer and the value is the same as old value. CPU think the value in memory is not changed because whole data transfering is through DMA controller, so CPU keeps the old buffer data in cache, that makes the difference between cache data and real data. Figure~\ref{fig:Cache Coherency Problems.} shows the cache coherency problem, both read and write may lead this problem, so if we want to transfer the correct data, we must solve this problem.
+While using DMA to do the data transfer, it may lead cache coherency problems. If we want to receive data to the buffer through the DMA, but the buffer is in cache now, to apply transaction, we give controller the buffer address and length. Once the transaction is done, we read the buffer and the value is the same as old value. CPU think the value in memory is not changed because whole data transfer is through DMA controller, so CPU keeps the old buffer data in the cache, that makes the difference between cache data and real data. Figure~\ref{fig:Cache Coherency Problems.} shows the cache coherency problem, both read and write may lead to this problem, so if we want to transfer the correct data, we must solve this problem.
 \begin{figure}[!htb]
   \centering
   \includegraphics[scale=0.5]{images/cache_coherency.jpg}
@@ -89,7 +89,7 @@ While using DMA to do the data transfering, it may lead cache coherency problems
 \label{sec:Linux UIO driver for AXI DMA}
 This sections will demonstrate our main work and explain how we solve the problems we have mentioned in previous section.
 
-Let's take a look at two file operations \textbf{write(), read()} in UIO. Figure~\ref{fig:UIO write and read functions.} shows what these two functions doing, basiclly, these two functions in UIO driver is the handle about interrupt control. However, in our design, UIO node is actually a virtual device node, so interrupt control and memory mapping are no more needed. That means we can use \textbf{write(), read()} to do the \emph{\textbf{real}} read/write, that is, Figure~\ref{fig:UIO write and read functions(modified)}. 
+Let's take a look at two file operations \textbf{write(), read()} in UIO. Figure~\ref{fig:UIO write and read functions.} shows what these two functions doing, basically, these two functions in UIO driver is the handle about interrupt control. However, in our design, the UIO node is actually a virtual device node, so interrupt control and memory mapping are no more needed. That means we can use \textbf{write(), read()} to do the \emph{\textbf{real}} read/write, that is, Figure~\ref{fig:UIO write and read functions(modified)}. 
 
 %\newpage
 \begin{figure}[!htb]
@@ -108,20 +108,19 @@ Let's take a look at two file operations \textbf{write(), read()} in UIO. Figure
 
 
 \newpage
-To solve the continous memory issues, we apply DMA Scatter Gather mode. This mode allows non-
-contiguous (nonsegmented) block of physical memory and this mode need to be turn on in Vivado 
-design first. In this mode, DMA controller automatically give the start address of the 
+To solve the continuous memory issues, we apply DMA Scatter Gather mode. This mode allows non-contiguous (nonsegmented) block of physical memory and this mode need to turn on in Vivado 
+design first. In this mode, DMA controller automatically gives the start address of the 
 segmented of memory after the previous transaction of segmented memory is completed. To 
 apply this mode, we need to construct a special data structure, Scatterlist, which collects 
-start address and lengths of segmented block of user buffer memory. DMA engine will do the
+start address and lengths of the segmented block of user buffer memory. DMA engine will do the
 transaction according to this list. 
 
 To avoid cache coherency problem, if transaction direction is memory-to-device, we need to flush 
-cache to memory before submit transaction, if the direction is device-to-memory, we need to invalidate 
+cache to memory before submitting a transaction, if the direction is device-to-memory, we need to invalidate 
 the cache after the transfer and before the CPU accesses memory. 
 {}
 %\newpage
-These two problem will be considered in ``udma prepare dma'' shows in Figure~\ref{fig:UDMA write and read functions.}
+These two problems will be considered in ``udma prepare dma'' shows in Figure~\ref{fig:UDMA write and read functions.}
 In ``udma prepare dma'' function, we first \textbf{construct the scatterlist}, and call dma\_map\_sg() API provided by DMA engine to deal with the cache coherency problem in \textbf{Map the Scatterlist} stage. After all these settings, we can submit our DMA transaction to DMA controller, the following process is just like we have discussed in Section~\ref{sec:DMA}. Figure~\ref{fig:Udma Prepare for DMA} illustrates the stages in UDMA\_prepare\_DMA() function.
 
 \begin{figure}[!htb]
@@ -145,7 +144,7 @@ In ``udma prepare dma'' function, we first \textbf{construct the scatterlist}, a
 
 \section{Implementation}
 \label{sec:Implementation}
-In this section, we will give a simple tutorial of how to use our new UIO driver and some settings. The entire design environment will be shown in Chapter 4. The full details of usage and code will be uploaded to github repository\cite{mainwork}. 
+In this section, we will give a simple tutorial on how to use our new UIO driver and some settings. The entire design environment will be shown in Chapter 4. The full details of usage and code will be uploaded to GitHub repository\cite{mainwork}. 
 
 
 \subsection{Device Tree File Format}
@@ -165,7 +164,7 @@ my_customIP@43c00000 {
 \end{lstlisting}
 \par}
 
-It contains IP name, IP register address, register length, interrupt control...etc. These are essential properties if you want to apply a driver to control the device. But in our design, we have no real device, so the device node will looks like:
+It contains IP name, IP register address, register length, interrupt control...etc. These are essential properties if you want to apply a driver to control the device. But in our design, we have no real device, so the device node will look like:
 
 {\renewcommand\baselinestretch{0.8}\selectfont
 \begin{lstlisting}[frame=single,language=C]
@@ -207,7 +206,7 @@ loopback_dma: axidma@40410000 {
 \end{lstlisting}
 \par}
 
-Then ``dmas'' should be ``<\&loopback\_dma 0 \&loopback\_dma >'', dma-names is fixed in driver, please make sure the names are the same as the setting. ``dirs'' tells driver the direction of DMA channel. If the direction is not the same as declaration in ``axidma'', it will fail when UIO is probing. ``mm2s'' means ``memory map to stream'', represents for the tx channel. ``s2mm'' means ``stream to memorymap'' represents for the rx channel. After all these settings, our UIO driver should probe the device correctly and create a device node under /dev, like /dev/uio0.
+Then ``dmas'' should be ``<\&loopback\_dma 0 \&loopback\_dma >'', dma-names is fixed in the driver, please make sure the names are the same as the setting. ``dirs'' tells the driver the direction of DMA channel. If the direction is not the same as the declaration in ``axidma'', it will fail when UIO is probing. ``mm2s'' means ``memory map to stream'', represents for the tx channel. ``s2mm'' means ``stream to memory map'' represents for the rx channel. After all these settings, our UIO driver should probe the device correctly and create a device node under /dev, like /dev/uio0.
 
 \subsection{Compile New Kernel}
 \label{subsec:Compile New Kernel}
@@ -215,7 +214,7 @@ Because we modified the UIO driver and add some new library in Linux kernel, we 
 
 \subsection{Environment Variables Settings in U-boot}
 \label{subsec:Linux On FPGA}
-Same as the we mentioned in Chapter 2, we boot Linux on FPGA from SD card with two partitions. The boot files in first partition have much changed in our scenario, ``devicetree.dtb'' and ``uImage'' we have discussed in former subsection. The modification in ``uEnv.txt'' is quite easy, this file provides additional environment variables for the bootloader, u-boot. It will looks like: 
+Same as the we mentioned in Chapter 2, we boot Linux on FPGA from SD card with two partitions. The boot files in first partition have much changed in our scenario, ``devicetree.dtb'' and ``uImage'' we have discussed in former subsection. The modification in ``uEnv.txt'' is quite easy, this file provides additional environment variables for the bootloader, u-boot. It will look like: 
 
 {\renewcommand\baselinestretch{0.8}\selectfont
 \begin{lstlisting}[frame=single,language=C]
@@ -258,7 +257,7 @@ int main(void)
 \end{lstlisting}
 \par}
 
-First, we open device node to get device pointer, and if we want to write the data in tx_buf to the device, we call write() function. If we want to read the data in the device to the rx_buf, we call read() function. All three parameters are easy to understand in the above example, the first parameter is device pointer, the second one is buffer pointer and the third one is the data size. Please note that the data size is the number of bytes, so if you declare buffer as type \textbf{uint32_t} which is a 32-bit array then your PACKET_SIZE in function need to be multiplied by 4. 
+First, we open the device node to get the device pointer, and if we want to write the data in tx_buf to the device, we call write() function. If we want to read the data in the device to the rx_buf, we call read() function. All three parameters are easy to understand in the above example, the first parameter is the device pointer, the second one is the buffer pointer and the third one is the data size. Please note that the data size is the number of bytes, so if you declare buffer as type \textbf{uint32_t} which is a 32-bit array then your PACKET_SIZE in function need to be multiplied by 4. 
 
 {\renewcommand\baselinestretch{0.8}\selectfont
 \begin{lstlisting}[frame=single,language=C]
@@ -279,5 +278,5 @@ int main(void)
 \end{lstlisting}
 \par}
 
-The return value is the number of bytes, basiclly, it is equal to the value of the third argument you put in the function.
-In example1, rv1 and rv2 is 2048, in example2, rv1 and rv2 is 8192.
+The return value is the number of bytes, basically, it is equal to the value of the third argument you put in the function.
+In example1, rv1 and rv2 are 2048, in example2, rv1 and rv2 are 8192.

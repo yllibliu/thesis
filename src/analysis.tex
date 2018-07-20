@@ -4,7 +4,7 @@
 %-------------------------------------------------------------------------
 \chapter{Analysis}
 \label{cha:Analysis}
-To analyze our works, we find a similar driver called ``ezdma''\cite{ezdma} on github repository as a comparison. The difference between our works and ezdma is that we modify the UIO driver, and ezdma just write a new kernel driver to do the same thing. In our experiment, we use three different AXI4-Stream IPs to test our, one is \textbf{AXI4-Stream FIFO} provided in Vivado, the others are custom AXI4-Stream IPs. We rewrite the \textbf{tinyAES}\cite{tinyaes} from OpenCores\cite{opencores} to a version with DMA, and we write a \textbf{ECDSA IP(with DMA)} with curve secp256k1 which is used in the Bitcoin system. 
+To analyze our works, we find a similar driver called ``EZDMA''\cite{ezdma} on GitHub repository as a comparison. The difference between our works and EZDMA is that we modify the UIO driver, and EZDMA is a whole new kernel driver to do the same thing. In our experiment, we use three different AXI4-Stream IPs to test our, one is \textbf{AXI4-Stream FIFO} provided in Vivado, the others are custom AXI4-Stream IPs. We rewrite the \textbf{tinyAES}\cite{tinyaes} from OpenCores\cite{opencores} to a version with DMA, and we write a \textbf{ECDSA IP(with DMA)} with curve secp256k1 which is used in the Bitcoin system. 
 %-------------------------------------------------------------------------
 % Section: FIFO
 %-------------------------------------------------------------------------
@@ -19,7 +19,7 @@ To analyze our works, we find a similar driver called ``ezdma''\cite{ezdma} on g
 %\section{Custom AXI4-Stream IP}
 %\label{sec:Custom AXI4-Stream IP}
 
-
+l
 %\subsection{OpenCores tinyAES with DMA}
 %\label{sec:OpenCores tinyAES with DMA}
 
@@ -31,9 +31,8 @@ To analyze our works, we find a similar driver called ``ezdma''\cite{ezdma} on g
 %-------------------------------------------------------------------------
 \section{Comparison}
 \label{sec:Comparison}
-%Table~\ref{tab:sample1} shows our test results,it is obvious that our works has almost the same throughput as EZDMA has. 
-%Because our driver is based on UIO driver, it not only do the new works, but remain old works also. So we consider the results is %totally acceptable.
-The performance of our driver can be seen in the table~\ref{tab:sample1}, the \textbf{Frequency} is the fatest frequency that our IP can work correctly, this is determin when we designed our IP in Vivado. In this experiment, we send a transmit package to the DMA controller and send receive package to the DMA controller, that means we send input to the custom IP and we read output from the custom IP, and we repeats 1,000,000 times to get the thoughput. The transmit package size we sent is shown in \textbf{Input} column, and receive package size is shown in \textbf{Output} column. 
+
+The performance of our driver can be seen in the table~\ref{tab:sample1}, the \textbf{Frequency} is the fastest frequency that our IP can work correctly, this is determined when we designed our IP in Vivado. In this experiment, we send a transmit package to the DMA controller and send receive package to the DMA controller, that means we send input to the custom IP and we read the output from the custom IP, and we repeat 1,000,000 times to get the throughput. The transmit package size we sent is shown in \textbf{Input} column, and receive package size is shown in \textbf{Output} column. 
 \newpage
 \begin{table}
 \centering
@@ -51,5 +50,5 @@ The performance of our driver can be seen in the table~\ref{tab:sample1}, the \t
 \label{tab:sample1}
 \end{table}
 
-The result shows that our driver has almost the same throughput as the EZDMA has, and because our driver is a modified version of UIO, and EZDMA is a additional kernel driver, we consider the result is totally reasonable and acceptable.
+The result shows that our driver has almost the same throughput as the EZDMA has. Because our driver is a modified version of UIO, and EZDMA is an additional kernel driver, we consider the result is totally reasonable and acceptable.
 

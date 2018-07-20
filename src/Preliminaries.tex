@@ -13,10 +13,10 @@ In this chapter, we introduce the background technology used in our work, includ
 \section{Embedded Linux}
 \label{sec:Embedded Linux}
 
-Embedded Linux is a kernel and set of libraries and utilitied designed to run
-on an embedded system(eg: router). In this section, instead of talking about the details of Linux kernel, we explain what happens when we port a OS(operation system) to a platform, in this thesis, we use FPGA as our platform. 
+Embedded Linux is a kernel and set of libraries and utilities designed to run
+on an embedded system(eg: router). In this section, instead of talking about the details of Linux kernel, we explain what happens when we port an OS(operation system) to a platform, in this thesis, we use FPGA as our platform. 
 
-Figure~\ref{fig:Linux Boot Stage on Target Platform} shows the stages of booting Linux on the target platform. For example, when we turns on the FPGA, the board will boot ROM and find the boot mode setting, then load FSBL(First Stage Bootloader), which will load bitstream to initialize the PL side on FPGA. After, it will load the SSBL(Second Stage Bootloader), here we use u-boot for demonstration. The main purpose of u-boot is to load Linux Kernel, it loads kernel image with \textbf{\emph{devicetree file}} of the target platform. With well prepared file system, the Linux should run up successfully, in this thesis, we use uramdisk and linaro\cite{linaro} as our root file system.
+Figure~\ref{fig:Linux Boot Stage on Target Platform} shows the stages of booting Linux on the target platform. For example, when we turn on the FPGA, the board will boot ROM and find the boot mode setting, then load FSBL(First Stage Bootloader), which will load bitstream to initialize the PL side on FPGA. After, it will load the SSBL(Second Stage Bootloader), here we use u-boot for demonstration. The main purpose of u-boot is to load Linux Kernel, it loads the kernel image with \textbf{\emph{devicetree file}} of the target platform. With the well-prepared file system, the Linux should run up successfully, in this thesis, we use uramdisk and linaro\cite{linaro} as our root file system.
 \begin{figure}[!htb]
   \centering
   \includegraphics[scale=0.4]{images/linux_boot_stage.jpg}
@@ -33,25 +33,25 @@ Figure~\ref{fig:Linux Boot Stage on Target Platform} shows the stages of booting
   \label{fig:Embedded Linux on FPGA}
 \end{figure}
 
-Figure~\ref{fig:Embedded Linux on FPGA} shows an example of how we boot Linux on FPGA\cite{concise}. In this example, we boot Linux on FPGA from SD card, so we need to format SD card to two partitions. The 1st partition is type FAT3, this partition includes all required boot files, that is BOOT.bin, Linux Kernel(uImage), file system(uramdisk.image.gz), and devicetree file(devicetree.dtb). The 2nd partition is type ext4, this partition is used as root file system, so it includes entire root file system, in our case, we use linaro. 
+Figure~\ref{fig:Embedded Linux on FPGA} shows an example of how we boot Linux on FPGA\cite{concise}. In this example, we boot Linux on FPGA from SD card, so we need to format SD card into two partitions. The 1st partition is type FAT3, and this partition includes all required boot files, that is BOOT.bin, Linux Kernel(uImage), file system(uramdisk.image.gz), and devicetree file(devicetree.dtb). The 2nd partition is type ext4, and this partition is used as a root file system, so it includes the entire root file system, in our case, we use linaro. 
 
 \subsection{Device Tree}
 \label{subsec:Device Tree}
 
 Device Tree is a mechanism to describe all hardware and devices of a system. In early Linux 
-kernel, hardware description is hardcoded in kernel files, so porting kernel to different
+kernel, hardware description is hardcoded in kernel files, so porting kernel to a different
 platform is painful. To solve this problem, Device Tree is introduced. 
 Like x86 based system, we should consider Linux kernel image is a black box, and give the 
-hardware informations of system to kernel.
+hardware information of system to the kernel.
 %
 
 In FPGA development flow, the whole system almost keeps the same, the only thing that might change 
 is our design in PL(Programmable Logic) side. To boot Linux with different PL design, only 
-a little modification of devicetree file is needed.     
+a little modification of the devicetree file is needed.     
 
 
 \subsection{Linux Device Driver}
-The role of device driver is a bridge between hardware and software, it communicates with device and provides functions to applications, like Figure~\ref{fig:Linux Device Driver} shows. Device driver is basiclly in linux kernel space, which means if driver is somehow not working correctly, like getting stucked in an infinite for-loop, the entire system will hang. So device driver need to be very robust. 
+The role of a device driver is a bridge between hardware and software, it communicates with the device and provides functions to applications, like Figure~\ref{fig:Linux Device Driver} shows. A device driver is basically in Linux kernel space, which means if the driver is somehow not working correctly, like getting stuck in an infinite for-loop, the entire system will hang. Hence, a device driver needs to be very robust. 
 
 \begin{figure}[!htb]
   \centering
@@ -79,8 +79,8 @@ UIO driver fulfills all of the following:
 \end{itemize}
 %
 Figure~\ref{fig:UIO Driver} shows how the UIO system works, in software-side of FPGA development, we 
-only care about the value in the hardware register and when we can get the correct value, so memeory-mapping 
-to user-spcae application and interrupt handler is really enough in our design flow\cite{howtoUIO}.  
+only care about the value in the hardware register and when we can get the correct value, so memory-mapping 
+to a userspace application and interrupt handler is really enough in our design flow\cite{howtoUIO}.  
 %
 \begin{figure}[!htb]
   \centering
@@ -94,7 +94,7 @@ to user-spcae application and interrupt handler is really enough in our design f
 %-------------------------------------------------------------------------
 %\section{Register Types in Vivado}
 %\label{sec:Register Types in Vivado}
-%When we design custom IP in Vivado, there are three types of register we can choose, Lite,Full and Stream. These three types is %based on AXI4 protocol,  
+
 %\begin{itemize}
 %\item separate address/control and data phases
 %\item support for unaligned data transfers using byte strobes
@@ -120,7 +120,7 @@ to user-spcae application and interrupt handler is really enough in our design f
 \section{DMA}
 \label{sec:DMA}
 
-DMA(Direct Memory Access) is a feature that allows hardware subsystems to access main system memory independent of CPU. For example, when CPU wants to submit a DMA transaction, it needs to give DMA controller where the data is(memory address), and size of the data(data length). After submit, CPU can go back to work for other tasks, once the transaction is done, CPU will receive a interrupt from DMA controller, and run the callback function.
+DMA(Direct Memory Access) is a feature that allows hardware subsystems to access main system memory independent of the CPU. For example, when CPU wants to submit a DMA transaction, it needs to give the DMA controller where the data is(memory address), and size of the data(data length). After submit, the CPU can go back to work for other tasks. Once the transaction is done, the CPU will receive an interrupt from DMA controller and run the callback function.
 \begin{figure}[!htb]
   \centering
   \includegraphics[scale=0.5]{images/DMA.jpg}

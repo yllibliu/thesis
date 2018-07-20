@@ -4,9 +4,9 @@
 \chapter{Conclusion and Future Works}
 \label{cha:conclusion and Future Works}
 
-In this thesis, we design a flow and modify the UIO driver so that we can control our custom AXI4-Stream IP in Linux on FPGA easily. The driver efficiency is also satisfactory, and our modification is also little, we even provide a script file to run all things, if setting properly. The final goal of our works is that our modified UIO driver can be merge to Linux kernel. Rather than write a whole new driver, we think that most FPGA developers use UIO driver to communicate with their own IP, so make UIO driver ``better'' is a ``better'' way to solve the problem that we have no useful driver to help us control the AXI4-Stream IP. In conclusion, we think our work is useful for people who want to deveplop application on FPGA
+In this thesis, we design a flow and modify the UIO driver so that we can control our custom AXI4-Stream IP in Linux on FPGA easily. The driver efficiency is also satisfactory, and our modification is also little, we even provide a script file to run all things, if set properly. The final goal of our works is that our modified UIO driver can be merged into Linux kernel. Rather than write a whole new driver, we think that most FPGA developers use UIO driver to communicate with their own IP, so make UIO driver ``better'' is a ``better'' way to solve the problem that we have no useful driver to help us control the AXI4-Stream IP. In conclusion, we think our work is useful for people who want to develop an application on FPGA
 
-In future, there are still some works can be done, for example, Xilinx has other DMA components provided in Vivado that is, AXI VDMA and AXI CDMA. VDMA is about DMA used in video purpose, and CDMA is a memory-mapped to memory mapped DMA, like FIFO with AXI DMA. We are not very sure whether the usage of these components are as same as AXI DMA, this need more test and research. 
+In future, there are still some works can be done, for example, Xilinx has other DMA components provided in Vivado that is, AXI VDMA and AXI CDMA. VDMA is a special DMA used for video purpose, and CDMA is a memory-mapped to memory mapped DMA, like FIFO with AXI DMA. We are not very sure whether the usage of these components is as same as AXI DMA, this needs more test and research. 
 
 
 
