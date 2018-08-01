@@ -10,7 +10,7 @@ FPGA(Field Programmable Gate Array) is a special hardware device that allows peo
 \section{Motivation}
 \label{sec:Motivation}
 
- To simplify the development flow, introducing embedded system on FPGA becomes more popular in recent years. In an embedded system, if we choose Linux as our operating system, we can apply ``UIO driver'' to our custom IP in PL side and control it in user space application, just like it is an external device. However there are still some issues, that make UIO driver can not work correctly, the design using AXI-Stream registers with DMA controller is one of them. In this situation, we can only control ``DMA controller'' to transfer data to or from our custom IP, and this needs ``root'' privileges. But giving root to a user that only want to control the custom IP is overkill. So we need to find out a soluion to this problem. 
+ To simplify the development flow, introducing embedded system on FPGA becomes more popular in recent years. In an embedded system, if we choose Linux as our operating system, we can apply ``UIO driver'' to our custom IP in PL side and control it in user space application, just like it is an external device. However there are still some issues, that make UIO driver can not work correctly, the design using AXI-Stream registers with DMA controller is one of them. In this situation, we can only control ``DMA controller'' to transfer data to or from our custom IP, and this needs ``root'' privileges. But giving root to a user that only want to control the custom IP is overkill. Hence, we need to find out a soluion to this problem. 
 
 %首先先示範一行簡單的數學式：
 %\begin{equation} \label{eq:sample1}
