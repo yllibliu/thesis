@@ -83,16 +83,18 @@
 \newgeometry{left=3cm,top=3cm,right=3cm,bottom=2cm}
 \doublespacing
 
+\pagenumbering{roman}
+\setcounter{page}{1}
 % 誌謝
 \input{src/acknowledgements}
-
+\clearpage
 % 中英文摘要
 \input{src/abstract_zh}
+\clearpage
 \input{src/abstract_en}
 
 % 羅馬數字編號
-\pagenumbering{roman}
-\setcounter{page}{1}
+
 
 % 目錄、圖目錄、表目錄
 \tableofcontents

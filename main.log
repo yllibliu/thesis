@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.24)  6 AUG 2018 06:14
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.24)  6 AUG 2018 07:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1663,38 +1663,42 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
- (./src/acknowledgements.tex [1
+ (./src/acknowledgements.tex) [1
 
-]) (./src/abstract_zh.tex
+] (./src/abstract_zh.tex
 
 LaTeX Font Warning: Font shape `TU/BiauKai(0)/m/it' undefined
 (Font)              using `TU/BiauKai(0)/m/n' instead on input line 10.
 
-[1]) (./src/abstract_en.tex [1]) (./main.toc
+) [2
+
+] (./src/abstract_en.tex) [3
+
+] (./main.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 2.
- [1
+ [4
 
 ])
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
- [2] (./main.lof)
+ [5] (./main.lof)
 \tf@lof=\write5
 \openout5 = `main.lof'.
 
- [3
+ [6
 
 ]
 (./main.lot)
 \tf@lot=\write6
 \openout6 = `main.lot'.
 
- [4
+ [7
 
 ] (./src/introduction.tex
 Chapter 1.
@@ -1788,9 +1792,9 @@ axi-reference-guide.pdf,
  []
 
 
-Overfull \hbox (49.03366pt too wide) in paragraph at lines 51--54
-[]\TU/TimesNewRoman(0)/m/n/12 “Xilinx axi reference guide,” https://releases.li
-naro.org/ubuntu/images/developer/15.12/linaro-
+Overfull \hbox (11.73679pt too wide) in paragraph at lines 51--54
+[]\TU/TimesNewRoman(0)/m/n/12 “Linaro file system,” https://releases.linaro.org
+/ubuntu/images/developer/15.12/linaro-
  []
 
 
@@ -1819,7 +1823,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  39092 strings out of 493005
  927201 string characters out of 6134596
- 1192519 words of memory out of 5000000
+ 1191569 words of memory out of 5000000
  42534 multiletter control sequences out of 15000+600000
  6624 words of font info for 54 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
